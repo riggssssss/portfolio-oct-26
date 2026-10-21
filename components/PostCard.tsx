@@ -23,8 +23,9 @@ export function PostCard({ post, first, t }: { post: Post; first?: boolean; t: U
           <CurtainLink href={href}>{post.title}</CurtainLink>
         </h2>
         <span className="post-head-actions">
-          <CurtainLink href={href} className="btn-case">
-            {t.caseStudy} <ExArrow />
+          <CurtainLink href={href} className="btn-case" aria-label={t.caseStudy}>
+            <span className="case-long">{t.caseStudy}</span>
+            <span className="case-short">{t.view}</span> <ExArrow />
           </CurtainLink>
         </span>
       </div>

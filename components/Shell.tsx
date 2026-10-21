@@ -4,6 +4,7 @@ import { site } from "@/lib/site";
 import type { UI } from "@/lib/i18n";
 import { CopyEmail } from "./Social";
 import { ExArrow } from "./Icons";
+import { ContactButton } from "./ContactButton";
 
 /** `plain`: sin migas; en el feed el perfil ya dice quién es (decisión del usuario).
  *  `lead`: lo que va en la esquina izquierda en su lugar (en el feed, EN / ES). */
@@ -48,9 +49,7 @@ export function TopBar({
               CV <ExArrow />
             </a>
           )}
-          <a className="btn primary" href={`mailto:${site.email}`}>
-            {t.contact}
-          </a>
+          <ContactButton email={site.email} label={t.contact} copied={t.copied} />
         </div>
       </div>
     </header>

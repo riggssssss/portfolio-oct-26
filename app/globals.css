@@ -636,6 +636,9 @@ svg {
 }
 /* Case study: mismo estilo que la ficha bajo la descripción (20px, gris claro);
    pasa a tinta al pasar por él o por la imagen. */
+.case-short {
+  display: none;
+}
 .btn-case {
   display: inline-block;
   white-space: nowrap;
@@ -1209,23 +1212,43 @@ html[data-reveal="down"] .feed .media > svg {
     --gutter: 16px;
     --gap-item: 64px;
   }
-  .profile {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: var(--gap-text);
-    align-items: center;
-  }
-  .profile > :not(.avatar) {
-    grid-column: 1 / -1;
+  /* Perfil apilado: la foto, el nombre debajo y luego la bio; con aire bajo la
+     barra (petición del usuario). */
+  .aside:has(.profile) {
+    padding-top: var(--gap-group);
   }
   .profile .avatar.lg {
-    width: 52px;
-    height: 52px;
-    font-size: 18px;
+    width: 64px;
+    height: 64px;
+    font-size: 20px;
   }
+  /* El nombre, al mismo tamaño que la bio (en gris, como siempre). */
   .profile .profile-id {
-    grid-column: 2;
-    margin-top: 0;
+    margin-top: var(--gap-text);
+    font-size: clamp(26px, 7.4vw, 32px);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  /* Que el perfil respire: más aire entre bloques y la bio con más interlineado
+     (petición del usuario). La ubicación y los enlaces van juntos, como un pie. */
+  .profile-bio {
+    margin-top: var(--gap-group);
+    font-size: clamp(26px, 7.4vw, 32px); /* la bio manda en el perfil móvil (petición del usuario) */
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-box: none;
+  }
+  .profile .pills {
+    margin-top: calc(var(--gap-group) + var(--gap-caption));
+  }
+  .profile .profile-loc {
+    margin-top: calc(var(--gap-group) + var(--gap-caption));
+  }
+  .profile .profile-links {
+    margin-top: var(--gap-object);
+  }
+  .layout:not(.cs) {
+    gap: var(--gap-item);
   }
 }
 
@@ -1243,15 +1266,20 @@ html[data-reveal="down"] .feed .media > svg {
   .crumb-sep {
     display: none;
   }
-  .post-head {
-    flex-wrap: wrap;
-    row-gap: var(--gap-caption);
+  /* Tarjetas: "Caso de estudio" a la derecha del título, en su última línea; sin
+     descripción, solo la ficha bajo la imagen (petición del usuario). */
+  .post-caption {
+    display: none;
   }
-  .post-head .post-title {
-    flex-basis: 100%;
+  /* En móvil el enlace dice solo "Ver", para que el título tenga sitio. */
+  .case-long {
+    display: none;
   }
-  .post-head-actions {
-    margin-left: 0;
+  .case-short {
+    display: inline;
+  }
+  .post-foot .exif {
+    margin-top: 0;
   }
 }
 

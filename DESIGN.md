@@ -241,8 +241,8 @@ Vertical rhythm is set by section distance: 96px between posts and between case-
 
 **Responsive:**
 - 1200px and below: two columns, a fixed 280px aside and a fluid main column (the feed and its media grow to fill it); the top bar stops sticking.
-- 900px and below: one column, 24px gutters, 24px top padding. The home aside stops sticking and becomes the profile header (52px avatar beside the name, bio below). The case-study aside (back link and index) is hidden; the name in the top bar leads home. Top bar 56px.
-- 600px and below: Copiar email and CV leave the top bar, as does the breadcrumb trail, leaving the name and the Contactar pill. The post title takes the full row and its share and Leer case study actions wrap beneath it, nudged -8px so the share icon aligns with the text edge. The spec sheet goes from four columns to two.
+- 900px and below: one column, 24px gutters, 24px top padding. The profile breathes (2026-10-21, user request): bio 24px under the name at clamp(26px, 7.4vw, 32px), 1.2 line height, -0.02em, 32px to the tools, 32px to the location, links 12px under it, and 64px from the profile to the feed. The home aside stops sticking and becomes the profile header, stacked (2026-10-21, user request): 24px more air under the top bar, the 64px avatar, the name 16px under it at the bio's size (clamp(26px, 7.4vw, 32px), `faint`), then the bio. The case-study aside (back link and index) is hidden; the name in the top bar leads home. Top bar 56px.
+- 600px and below: Copiar email and CV leave the top bar, as does the breadcrumb trail, leaving the name and the Contactar pill. Feed cards drop the caption (only the catalogue line stays under the media) and keep the case-study link on the right of the title, on its last line, shortened to "Ver ↗" / "View ↗" so the title keeps two lines (2026-10-21, user request). The spec sheet goes from four columns to two.
 - `hover: none` hides the media hover arrow.
 
 Media is 3:2 when it spans the full content width (the case-study hero and figures) and 4:3 elsewhere (feed posts in the 680px column, gallery strips; the narrow stacked layouts keep the same ratios). Carousels are native horizontal scroll-snap tracks.
@@ -265,7 +265,7 @@ Dividers are always 1px: `line` for ordinary separation, full `ink` for the two 
 ### Buttons
 Quiet pills; only one is ever filled.
 - **Shape:** full pill (999px), 34px tall, 14px horizontal padding, 6px icon gap, Label type.
-- **Primary:** Warm Graphite fill with White Paper text. Only Contactar, always visible in the top bar. Hover deepens the fill.
+- **Primary:** Warm Graphite fill with White Paper text. Only Contactar, always visible in the top bar; a click copies the email and the label reads "Copiado" for 1.8s (mailto only if the clipboard is refused). Hover deepens the fill.
 - **Ghost:** transparent, ink text; hover washes to `fill` (Copiar email, CV in the top bar).
 - **Outline:** 32px, 1px `line` border, Meta type, a trailing right arrow; hover darkens the border to `ink-3` and slides the arrow 2px right. It is the "Leer case study" pill on every feed post.
 - **Pressed:** any button scales to 0.97 on the expo curve.
