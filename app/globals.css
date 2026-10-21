@@ -1232,20 +1232,21 @@ html[data-reveal="down"] .feed .media > svg {
   /* Que el perfil respire: más aire entre bloques y la bio con más interlineado
      (petición del usuario). La ubicación y los enlaces van juntos, como un pie. */
   .profile-bio {
-    margin-top: var(--gap-group);
+    margin-top: var(--gap-caption);
     font-size: clamp(26px, 7.4vw, 32px); /* la bio manda en el perfil móvil (petición del usuario) */
     line-height: 1.2;
     letter-spacing: -0.02em;
     text-box: none;
   }
   .profile .pills {
-    margin-top: calc(var(--gap-group) + var(--gap-caption));
+    margin-top: var(--gap-group);
   }
+  /* Sin ubicación en el perfil apilado: solo los enlaces bajo las herramientas. */
   .profile .profile-loc {
-    margin-top: calc(var(--gap-group) + var(--gap-caption));
+    display: none;
   }
   .profile .profile-links {
-    margin-top: var(--gap-object);
+    margin-top: var(--gap-group);
   }
   .layout:not(.cs) {
     gap: var(--gap-item);

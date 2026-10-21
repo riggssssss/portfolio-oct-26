@@ -157,9 +157,9 @@ export const posts: Post[] = [
           alt: "The Mockp editor: a template is imported and its chroma screen detected, then light and shadow are adjusted",
           video: { src: "/img/mockp/chroma-web.mp4", poster: "/img/mockp/chroma-web.jpg", ratio: 1440 / 896 },
         },
-        // Capítulos del vídeo recortado (38 s): la plantilla entra a los 3 s, los ajustes a los 17, Publish a los 29,5.
+        // Capítulos del vídeo recortado (38 s): el primero desde el segundo 0 (siempre hay uno activo), los ajustes a los 17, Publish a los 29,5.
         steps: [
-          { title: "Import the template and detect its chroma area", at: 3 },
+          { title: "Import the template and detect its chroma area", at: 0 },
           { title: "Adjust the screen's light and reflection", at: 17 },
           { title: "Save the mockup", at: 29.5 },
         ],

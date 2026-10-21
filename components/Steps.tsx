@@ -10,7 +10,7 @@ import css from "./Steps.module.css";
  *  pulsarlo lleva el vídeo a ese momento. */
 export function Steps({ media, steps }: { media: MediaT; steps: { title: string; at: number }[] }) {
   const box = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(-1);
+  const [active, setActive] = useState(0); // el primero empieza en 0: siempre hay uno activo
 
   useEffect(() => {
     const video = box.current?.querySelector("video");
