@@ -11,29 +11,29 @@ export const es: Record<string, string> = {
 
   // Mockp
   "A professional mockup in a matter of seconds": "Un mockup profesional en cuestión de segundos",
-  "A mockup is only useful if it looks like yours. I designed and built Mockp, a free gallery with an editor that places your design in seconds, respecting light, shadow and layers.":
-    "Un mockup solo sirve si parece tuyo. Diseñé y desarrollé Mockp, una galería gratuita con un editor que coloca tu diseño en segundos, respetando luces, sombras y capas.",
+  "A mockup is only useful if it looks like yours. I designed and built Mockp, a free gallery with an editor that places your design in seconds, with all the realism it deserves.":
+    "Un mockup solo sirve si parece tuyo. Diseñé y desarrollé Mockp, una galería gratuita con un editor que coloca tu diseño en segundos, con todo el realismo que merece.",
   "Product Design & Development": "Diseño de producto y desarrollo",
   "Personal project": "Proyecto personal",
   "[X] months": "[X] meses",
   "Mockp editor: a laptop on a wooden chair, next to the brightness, reflection and screen settings":
     "Editor de Mockp: un portátil sobre una silla de madera, junto a los ajustes de brillo, reflejo y pantalla",
-  "A good mockup cost you money or time": "Un buen mockup costaba dinero o tiempo",
+  "Finding the right mockup was harder than it looked": "Encontrar el mockup adecuado era más difícil de lo que parecía",
   "Presenting a design should be the easiest step, but it ended up being the one that cost me the most. And always for the same three reasons.":
     "Presentar un diseño debería ser el paso más sencillo, pero acababa siendo el que más me costaba. Y siempre por los mismos tres motivos.",
-  "Paying to try": "Pagar para probar",
-  "You paid before knowing whether it would fit your visual identity, and often it was the same one everybody else used.":
-    "Pagabas antes de saber si encajaría con tu identidad visual y, a menudo, era el mismo que usaba todo el mundo.",
-  "Hours in Photoshop": "Horas en Photoshop",
-  "Scene, shadow, device, screen and glare: every layer built by hand, for every mockup.":
-    "Escena, sombra, dispositivo, pantalla y reflejo: cada capa montada a mano, en cada mockup.",
-  "Single use": "Un solo uso",
-  "Each mockup served one piece. For the next one, back to square one.":
-    "Cada mockup servía para una pieza. Para la siguiente, vuelta a empezar.",
+  "Already seen": "Ya vistos",
+  "The most popular mockups show up more and more often, which makes it hard for anything to feel unique.":
+    "Los mockups más populares cada vez se ven más a menudo, y así cuesta que algo se vea único.",
+  "Trial and error": "Prueba y error",
+  "Setting each one up in Photoshop took several minutes, and the result often fell flat. Something faster was needed.":
+    "Montar cada uno en Photoshop llevaba varios minutos, y muchas veces el resultado no convencía. Hacía falta algo más rápido.",
+  "It didn't feel like me": "No me sentía yo",
+  "On their own, the free ones looked great, but when you put them together… Pinterest, though, knows what I like.":
+    "Sueltos, los gratuitos se veían genial, pero cuando los juntabas… Pinterest sí sabe lo que me gusta.",
   "The idea": "La idea",
-  "A Pinterest-style gallery of free mockups": "Una galería de mockups gratis al estilo Pinterest",
-  "Mockp gathers free mockups for anyone, in a format everybody already knows how to use: browse and pick.":
-    "Mockp reúne mockups gratis para cualquiera, en un formato que todo el mundo ya sabe usar: explorar y elegir.",
+  "A mockup gallery you browse like Pinterest": "Una galería de mockups que se explora como Pinterest",
+  "Mockp brings free mockups together in a Pinterest-style gallery. Seeing them side by side shows which ones suit your style, and you can try as many as you like until one feels right.":
+    "Mockp reúne mockups gratuitos en una galería al estilo Pinterest. Al verlos juntos ves cuáles combinan con tu estilo, y puedes probar tantos como quieras hasta que uno te convenza.",
   "The Pinterest-style gallery, on the web and on a phone": "La galería estilo Pinterest, en la web y en el móvil",
   Editor: "Editor",
   "A built-in editor, made for this one job": "Un editor integrado, hecho solo para esto",
@@ -45,16 +45,18 @@ export const es: Record<string, string> = {
   "All it takes: the area has to be chroma green": "Solo hace falta una cosa: que la zona sea verde croma",
   "Every mockup marks the area to replace in chroma green. The editor detects it on its own: nothing to select, nothing to mask.":
     "Cada mockup marca en verde croma la zona que se sustituye. El editor la detecta solo: nada que seleccionar, nada que enmascarar.",
-  "1. Chroma area detected": "1. Zona croma detectada",
-  "2. Your design, with light and shadow": "2. Tu diseño, con luces y sombras",
-  "3. Ready to use whenever you want": "3. Listo para usar cuando quieras",
-  "A unique mockup, ready before Photoshop opens": "Un mockup único, listo antes de que se abra Photoshop",
-  "And the mockup is ready to use whenever you want.": "Y el mockup queda listo para usar cuando quieras.",
-  "to get your mockup": "para tener tu mockup",
-  "€0": "0 €",
-  "for anyone": "para cualquiera",
-  "mockups in the gallery": "mockups en la galería",
-  "€15–40": "15–40 €",
+  "The Mockp editor: a template is imported and its chroma screen detected, then light and shadow are adjusted":
+    "El editor de Mockp: se importa una plantilla y se detecta su pantalla croma; después, se ajustan luces y sombras",
+  "Import the template and detect its chroma area": "Importar la plantilla y detectar su zona croma",
+  "Adjust the screen's light and reflection": "Ajustar la luz y el reflejo de la pantalla",
+  "Save the mockup": "Guardar el mockup",
+  "Presenting a design is the easy step again": "Presentar un diseño vuelve a ser el paso más sencillo",
+  "Over 150 free mockups, and any of them is ready in ten seconds, without opening Photoshop or drawing a single mask.":
+    "Más de 150 mockups gratuitos, y cualquiera queda listo en diez segundos, sin abrir Photoshop ni dibujar una sola máscara.",
+  "Ready in 10 s": "Listo en 10 s",
+  "Several minutes": "Varios minutos",
+  "Both clocks run in real time from the moment you reach this section.":
+    "Los dos relojes corren en tiempo real desde que llegas a esta sección.",
 
   // Design system (ejemplo)
   "A design system for six teams": "Un sistema de diseño para seis equipos",

@@ -118,15 +118,3 @@ export function Layout({
   );
 }
 
-export function Footer({ t }: { t: UI }) {
-  return (
-    <footer className="footer">
-      <p>
-        © {new Date().getFullYear()} {site.name}
-      </p>
-      <a href="#top" className="text-link">
-        {t.backTop}
-      </a>
-    </footer>
-  );
-}

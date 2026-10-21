@@ -1,0 +1,144 @@
+/* Carrera en tiempo real, en el mismo panel que las figuras: un cronómetro grande
+   y, debajo, dos carriles con su nombre, su estado y una barra de 2px. La del
+   proyecto en tinta, la otra en gris. Sin leyenda ni ejes: cada carril se nombra. */
+
+.figure {
+  margin-top: var(--gap-block);
+}
+
+.race {
+  padding: clamp(24px, 4.4vw, 64px);
+  border-radius: var(--radius);
+  background: var(--fill);
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--gap-group);
+}
+
+/* El cronómetro: la cifra más grande del case study, en peso normal. */
+.clock {
+  font-size: clamp(64px, 9vw, 96px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+/* Repetir: texto como la acción "Case study" del feed, aparece al terminar. */
+.replay {
+  font-size: var(--fs-ui);
+  line-height: 1;
+  color: var(--faint);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.45s var(--ease-out),
+    color 0.15s;
+}
+.replay:hover {
+  color: var(--ink);
+}
+.done .replay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lanes {
+  display: grid;
+  gap: clamp(28px, 3.2vw, 40px);
+  margin-top: clamp(40px, 4.4vw, 64px);
+}
+
+.lane {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  row-gap: 14px;
+  column-gap: var(--gap-text);
+}
+.name {
+  font-size: var(--fs-ui);
+  line-height: 1;
+  color: var(--ink);
+}
+.status {
+  display: grid;
+  justify-items: end;
+  font-size: var(--fs-ui);
+  line-height: 1;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+/* El tiempo y "listo" ocupan la misma celda; al terminar, uno se funde en el otro. */
+.running,
+.ready {
+  grid-area: 1 / 1;
+  transition:
+    opacity 0.45s var(--ease-out),
+    filter 0.45s var(--ease-out);
+}
+.ready {
+  color: var(--ink);
+  opacity: 0;
+  filter: blur(4px);
+}
+.done .fast .running {
+  opacity: 0;
+  filter: blur(4px);
+}
+.done .fast .ready {
+  opacity: 1;
+  filter: none;
+}
+
+/* El check se dibuja de un trazo cuando Mockp termina, justo después del fundido. */
+.ready {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.check {
+  width: 20px;
+  height: 20px;
+  margin-block: -4px;
+}
+.check path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.6s var(--ease-out) 0.2s;
+}
+.done .check path {
+  stroke-dashoffset: 0;
+}
+
+.track {
+  grid-column: 1 / -1;
+  height: 2px;
+  background: #d9d9d4; /* el gris más claro de las figuras Hairline */
+  overflow: hidden;
+}
+.bar {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.slow .bar {
+  background: #a6a6a0;
+}
+
+.caption {
+  margin-top: var(--gap-caption);
+  color: var(--faint);
+}
+
+@media (max-width: 600px) {
+  .lanes {
+    margin-top: var(--gap-block);
+  }
+}

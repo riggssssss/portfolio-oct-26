@@ -1,0 +1,35 @@
+/* La grabación sola y, debajo, sus capítulos uno bajo otro, con la voz del índice
+   lateral: tamaño de título, peso de titular, gris claro; el que se ve, en tinta. */
+
+.steps {
+  margin-top: var(--gap-block);
+}
+
+/* La ventana del navegador tal cual, sin la barra de pestañas y cortada justo
+   encima de sus esquinas redondeadas; el radio lo pone el CSS. */
+.video {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius);
+}
+
+.list {
+  display: grid;
+  justify-items: start;
+  margin-top: var(--gap-group);
+}
+
+.step {
+  padding-block: var(--gap-pair);
+  font-size: var(--fs-title);
+  font-weight: var(--w-head);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: var(--faint);
+  transition: color 0.2s var(--ease-out);
+}
+.step:hover,
+.step[aria-current] {
+  color: var(--ink);
+}

@@ -4,7 +4,7 @@
 
 /** Figuras de Hairline: las seis primeras dibujadas para este portfolio con la skill
  *  hairline-create (en /public/hairline), las tres últimas del paquete npm. */
-export type HairlineName = "copies" | "layers" | "matches" | "scan" | "seat" | "drawers" | "slow" | "plot" | "terrain";
+export type HairlineName = "copies" | "photoshop" | "puzzle" | "pipeline" | "scan" | "seat" | "drawers" | "slow" | "plot" | "terrain";
 
 export type MediaKind = "phone" | "desktop" | "components" | "flow" | "masonry" | "editor" | "editor-done";
 export type Tone = "light" | "mid" | "dark";
@@ -21,6 +21,8 @@ export type Media = {
   figure?: HairlineName;
   /** Escena de producto: foto de fondo con la web y el móvil grabados encima. Sustituye a `src`. */
   stage?: Stage;
+  /** Una grabación sola, sin escena ni fondo: la ventana tal cual. */
+  video?: Clip;
 };
 
 /** `ratio`: ancho / alto del vídeo, si no es el de la galería (1440 / 932). */
@@ -28,10 +30,14 @@ export type Clip = { src: string; poster: string; ratio?: number };
 /** Sin `phone`, la web va sola y centrada. */
 export type Stage = { bg: string; web: Clip; phone?: Clip };
 
-/** Gráfica de líneas simulada, antes / con el proyecto: cada línea es una serie de
- *  alturas (0 a 1) repartidas a lo ancho, con su cifra al final. Es ilustrativa: la
- *  escala no es real, cuenta la diferencia. */
-export type Chart = { before: { value: string; line: number[] }; after: { value: string; line: number[] } };
+/** Carrera en tiempo real: dos relojes que arrancan al ver la sección. `fast` llena
+ *  su barra en `seconds` y dice `text`; `slow` no tiene cifra (`text` lo describe) y
+ *  su barra se llena en `seconds`, una escala interna que no se muestra. */
+export type Race = {
+  fast: { label: string; seconds: number; text: string };
+  slow: { label: string; seconds: number; text: string };
+  caption: string;
+};
 
 export type Section = {
   id: string;
@@ -46,8 +52,12 @@ export type Section = {
   /** `figure`: una figura de Hairline de /public/hairline que lo ilustra. Si
    *  algún punto la tiene, los puntos se muestran como fila de figuras. */
   points?: { title: string; text: string; figure?: HairlineName }[];
-  /** Como `points`: si alguna cifra trae `figure` o `chart`, las cifras se muestran como fila. */
-  stats?: { value: string; label: string; figure?: HairlineName; chart?: Chart }[];
+  /** Como `points`: si alguna cifra trae `figure`, las cifras se muestran como fila. */
+  stats?: { value: string; label: string; figure?: HairlineName }[];
+  /** Capítulos de la grabación de `media` (ver `Steps`): `at`, el segundo en que empieza cada uno. */
+  steps?: { title: string; at: number }[];
+  /** Una carrera en tiempo real bajo el texto (ver `Race`). */
+  race?: Race;
 };
 
 export type Post = {
@@ -71,7 +81,7 @@ export const posts: Post[] = [
     date: "2026-09-12",
     title: "A professional mockup in a matter of seconds",
     caption:
-      "A mockup is only useful if it looks like yours. I designed and built Mockp, a free gallery with an editor that places your design in seconds, respecting light, shadow and layers.",
+      "A mockup is only useful if it looks like yours. I designed and built Mockp, a free gallery with an editor that places your design in seconds, with all the realism it deserves.",
     pinned: true,
     example: false,
     meta: { role: "Product Design & Development", team: "Personal project", duration: "[X] months", platform: "Web" },
@@ -88,22 +98,22 @@ export const posts: Post[] = [
       {
         id: "problem",
         title: "Problem",
-        heading: "A good mockup cost you money or time",
+        heading: "Finding the right mockup was harder than it looked",
         body: [
           "Presenting a design should be the easiest step, but it ended up being the one that cost me the most. And always for the same three reasons.",
         ],
         points: [
-          { title: "Paying to try", text: "You paid before knowing whether it would fit your visual identity, and often it was the same one everybody else used.", figure: "copies" },
-          { title: "Hours in Photoshop", text: "Scene, shadow, device, screen and glare: every layer built by hand, for every mockup.", figure: "layers" },
-          { title: "Single use", text: "Each mockup served one piece. For the next one, back to square one.", figure: "matches" },
+          { title: "Already seen", text: "The most popular mockups show up more and more often, which makes it hard for anything to feel unique.", figure: "copies" },
+          { title: "Trial and error", text: "Setting each one up in Photoshop took several minutes, and the result often fell flat. Something faster was needed.", figure: "photoshop" },
+          { title: "It didn't feel like me", text: "On their own, the free ones looked great, but when you put them together… Pinterest, though, knows what I like.", figure: "puzzle" },
         ],
       },
       {
         id: "idea",
         title: "The idea",
-        heading: "A Pinterest-style gallery of free mockups",
+        heading: "A mockup gallery you browse like Pinterest",
         body: [
-          "Mockp gathers free mockups for anyone, in a format everybody already knows how to use: browse and pick.",
+          "Mockp brings free mockups together in a Pinterest-style gallery. Seeing them side by side shows which ones suit your style, and you can try as many as you like until one feels right.",
         ],
         media: {
           kind: "masonry",
@@ -140,48 +150,34 @@ export const posts: Post[] = [
         body: [
           "Every mockup marks the area to replace in chroma green. The editor detects it on its own: nothing to select, nothing to mask.",
         ],
-        gallery: [
-          { kind: "editor", tone: "light", alt: "1. Chroma area detected", figure: "scan" },
-          { kind: "editor-done", tone: "light", alt: "2. Your design, with light and shadow", figure: "seat" },
-          { kind: "masonry", tone: "mid", alt: "3. Ready to use whenever you want", figure: "drawers" },
+        // La grabación del editor sola, sin fondo (petición del usuario).
+        media: {
+          kind: "editor",
+          tone: "light",
+          alt: "The Mockp editor: a template is imported and its chroma screen detected, then light and shadow are adjusted",
+          video: { src: "/img/mockp/chroma-web.mp4", poster: "/img/mockp/chroma-web.jpg", ratio: 1440 / 896 },
+        },
+        // Capítulos del vídeo recortado (38 s): la plantilla entra a los 3 s, los ajustes a los 17, Publish a los 29,5.
+        steps: [
+          { title: "Import the template and detect its chroma area", at: 3 },
+          { title: "Adjust the screen's light and reflection", at: 17 },
+          { title: "Save the mockup", at: 29.5 },
         ],
       },
       {
         id: "results",
         title: "Results",
-        heading: "A unique mockup, ready before Photoshop opens",
-        body: ["And the mockup is ready to use whenever you want."],
-        // Gráficas simuladas (petición del usuario). Las cifras de "antes" son estimaciones
-        // por confirmar: ~1 h montando un mockup a mano, 15–40 € uno de pago, 1 a mano.
-        stats: [
-          // Tiempo acumulado mockup a mockup: a mano sube en diagonal; con Mockp, casi plano.
-          {
-            value: "10 s",
-            label: "to get your mockup",
-            chart: {
-              before: { value: "~1 h", line: [0, 0.2, 0.4, 0.6, 0.8, 1] },
-              after: { value: "10 s", line: [0, 0.01, 0.02, 0.03, 0.04, 0.05] },
-            },
-          },
-          // Coste acumulado: cada mockup de pago suma; con Mockp se queda en cero.
-          {
-            value: "€0",
-            label: "for anyone",
-            chart: {
-              before: { value: "€15–40", line: [0, 0.22, 0.38, 0.62, 0.8, 1] },
-              after: { value: "€0", line: [0, 0, 0, 0, 0, 0] },
-            },
-          },
-          // Mockups a mano con el tiempo: de uno en uno, o la galería entera desde el principio.
-          {
-            value: "+150",
-            label: "mockups in the gallery",
-            chart: {
-              before: { value: "1", line: [0, 0.02, 0.04, 0.06, 0.08, 0.1] },
-              after: { value: "+150", line: [0, 0.82, 0.88, 0.93, 0.97, 1] },
-            },
-          },
+        heading: "Presenting a design is the easy step again",
+        body: [
+          "Over 150 free mockups, and any of them is ready in ten seconds, without opening Photoshop or drawing a single mask.",
         ],
+        // Tiempo real, sin cifras inventadas: Mockp tarda 10 s; Photoshop, "varios minutos"
+        // (palabras de Adrián). Los 240 s de Photoshop solo fijan lo lento que avanza su barra.
+        race: {
+          fast: { label: "Mockp", seconds: 10, text: "Ready in 10 s" },
+          slow: { label: "Photoshop", seconds: 240, text: "Several minutes" },
+          caption: "Both clocks run in real time from the moment you reach this section.",
+        },
       },
     ],
   },

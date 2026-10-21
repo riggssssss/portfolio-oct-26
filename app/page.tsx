@@ -1,7 +1,7 @@
 import { posts } from "@/lib/posts";
 import { localize, ui } from "@/lib/i18n";
 import { getLang } from "@/lib/lang";
-import { Footer, Layout, Location, Profile, TopBar } from "@/components/Shell";
+import { Layout, Location, Profile, TopBar } from "@/components/Shell";
 import { PostCard } from "@/components/PostCard";
 import { LangSwitch } from "@/components/LangSwitch";
 
@@ -22,7 +22,6 @@ export default async function Home() {
             <PostCard key={p.slug} post={p} first={i === 0} t={t} />
           ))}
         </div>
-        <Footer t={t} />
       </Layout>
     </>
   );

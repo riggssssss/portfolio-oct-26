@@ -5,7 +5,7 @@ import { getPost, posts } from "@/lib/posts";
 import { site } from "@/lib/site";
 import { localize, ui } from "@/lib/i18n";
 import { getLang } from "@/lib/lang";
-import { Footer, Layout } from "@/components/Shell";
+import { Layout } from "@/components/Shell";
 import { LangSwitch } from "@/components/LangSwitch";
 import { ProjectLink } from "@/components/ProjectLink";
 import { Media } from "@/components/Media";
@@ -98,20 +98,19 @@ export default async function PostPage({ params }: Props) {
           ))}
         </article>
 
-        <section className="cs-section" aria-labelledby="contact-title">
-          <div className="cs-chapter">
-            <h2 id="contact-title" className="cs-h2">
-              {t.letsTalk}
-            </h2>
-            <div className="cs-chapter-body">
-              <p className="cs-p">{t.contactText}</p>
-              <div className="cs-contact-actions">
-                <a className="btn primary" href={`mailto:${site.email}`}>
-                  {t.sendEmail}
-                </a>
-                <CopyEmail email={site.email} className="text-link" t={t} />
-              </div>
-            </div>
+        {/* El cierre: "Hablemos" en gris y el correo en grande, que
+            se copia al pulsarlo; debajo, la frase y el enlace para escribir. */}
+        <section className="cs-section cs-contact" aria-labelledby="contact-title">
+          <h2 id="contact-title" className="cs-contact-title">
+            {t.letsTalk}
+          </h2>
+          <CopyEmail email={site.email} className="cs-contact-email" t={t} />
+          <div className="cs-contact-foot">
+            <p>{t.contactText}</p>
+            <a className="text-link" href={`mailto:${site.email}`}>
+              {t.sendEmail}
+              <ExArrow />
+            </a>
           </div>
         </section>
 
@@ -124,7 +123,6 @@ export default async function PostPage({ params }: Props) {
             </span>
           </CurtainLink>
         )}
-        <Footer t={t} />
       </Layout>
     </>
   );

@@ -486,6 +486,8 @@ svg {
 .main {
   min-width: 0;
   grid-column: 2;
+  /* Sin pie: el contenido termina a un margen del borde, el mismo que a los lados. */
+  padding-bottom: var(--gutter);
 }
 .aside {
   grid-column: 1;
@@ -1075,6 +1077,10 @@ html[data-reveal="down"] .feed .media > svg {
   width: 100%;
   height: 100%;
 }
+/* Una figura sola a todo lo ancho, sobre el suelo, sin panel. */
+.cs-figure > .hairline {
+  aspect-ratio: 3 / 2;
+}
 .cs-figure figcaption {
   margin-top: var(--gap-caption);
   color: var(--faint);
@@ -1101,12 +1107,54 @@ html[data-reveal="down"] .feed .media > svg {
   scroll-snap-align: start;
 }
 
-.cs-contact-actions {
+/* Cierre del case study: "Hablemos" en gris al tamaño del índice y el correo como
+   titular, tan grande como cabe en la columna; al pasar se subraya desde la
+   izquierda, como el título de un post. Sin regla encima (petición del usuario). */
+.cs-contact {
+  container-type: inline-size;
+}
+.cs-contact-title {
+  font-size: var(--fs-title);
+  font-weight: var(--w-head);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--faint);
+}
+.cs-contact-email {
+  position: relative;
+  display: block;
+  margin-top: var(--gap-block);
+  font-size: min(8.5cqi, 104px); /* ocupa casi todo el ancho de la columna */
+  font-weight: var(--w-head);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+  color: var(--ink);
+}
+.cs-contact-email::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.1em;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+.cs-contact-email:hover::after,
+.cs-contact-email:focus-visible::after {
+  transform: scaleX(1);
+}
+.cs-contact-foot {
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
-  gap: var(--gap-group);
-  margin-top: var(--gap-group);
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--gap-caption) var(--gap-group);
+  margin-top: var(--gap-block);
+  color: var(--faint);
 }
 
 .next-post {
@@ -1133,17 +1181,6 @@ html[data-reveal="down"] .feed .media > svg {
 }
 .next-post:hover .ex-arrow {
   transform: translateX(4px);
-}
-
-/* ───────── Pie ───────── */
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: var(--gap-section);
-  padding-bottom: var(--gutter);
-  font-size: var(--fs-ui);
-  color: var(--faint);
 }
 
 /* ───────── Responsive ───────── */

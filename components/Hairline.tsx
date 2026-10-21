@@ -8,13 +8,13 @@ import { useEffect, useRef } from "react";
  * - las del paquete npm, que se montan con su propia función. */
 
 type Read = { textContent: string };
-type Handle = { set: (v: number) => void; destroy: () => void };
-type Figure = {
+export type Handle = { set: (v: number) => void; destroy: () => void; play?: (i: number, all?: boolean) => void };
+export type Figure = {
   name: string;
   means: string;
   range: [number, number, number];
   tour: ([number, number] | null)[] | null;
-  mount: (ctx: { stage: HTMLElement; svg: SVGSVGElement; read: Read }, value: number) => Handle;
+  mount: (ctx: { stage: HTMLElement; svg: SVGSVGElement; read: Read; onProgress?: (p: number) => void }, value: number) => Handle;
 };
 type Kernel = {
   inject: (root: Document) => void;
@@ -44,7 +44,7 @@ const figures = new Map<string, Promise<Figure>>();
 const waiting = new Map<string, (f: Figure) => void>();
 
 /** El motor una vez para toda la página; cada figura, una vez, se registra sola al cargar. */
-function load(name: string) {
+export function load(name: string) {
   let f = figures.get(name);
   if (!f) {
     kernel ??= window.HL ? Promise.resolve() : script("/hairline/kernel.js", false);
