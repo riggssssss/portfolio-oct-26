@@ -1,0 +1,1370 @@
+:root {
+  /* Jerarquía de color: tres tonos de texto, cada uno con un papel fijo.
+     El tamaño dice qué nivel de lectura es; el tono dice cuánto importa.
+     1. --ink    lo que nombra: títulos, titulares, bio, valores, botones,
+                 y la descripción del post en el feed (decisión del usuario).
+     2. --ink-2  lo que se lee debajo de un título dentro del case study:
+                 subtítulo, párrafos, texto de las tarjetas.
+     3. --faint  lo que acompaña: etiquetas, ficha, pies de foto, migas, pie,
+                 enlaces secundarios. Al hover sube a --ink.
+     Superficies: --bg (página) > --fill (pills, tarjetas, huecos de imagen). */
+  --bg: #ffffff;
+  --ink: #272724; /* 14.9:1 */
+  --ink-hover: #3a3a36; /* fondo del botón primario al hover */
+  --ink-2: #6b6b66; /* 5.3:1 */
+  --ink-3: #8c8c86; /* cromo del navegador; sin uso desde que no hay barra de scroll */
+  --faint: #b2b2ac; /* 2.1:1, claro a petición del usuario; solo texto ≥16px */
+  --line: #e8e8e5; /* subrayados, cuadrícula de la vitrina */
+  --fill: #f2f2f0;
+
+  --fallback: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --sans: var(--font-sans), var(--fallback);
+  --w-head: 500;
+
+  --page: 1920px; /* el ancho máximo; hasta aquí perfil, índice y barra llegan a los bordes */
+  --feed: 680px; /* ancho del feed e imágenes */
+  /* Jerarquía tipográfica (definida por el usuario en el post del feed):
+     el tamaño marca el nivel de lectura, el color la importancia. Un dato
+     secundario nunca baja de tamaño: baja de tono (--faint). */
+  --fs-display: clamp(36px, 3.6vw, 52px); /* título de case study */
+  --fs-heading: clamp(26px, 2.2vw, 30px); /* titular de sección, cifras */
+  --fs-title: 25px; /* título de post, bio, siguiente publicación */
+  --fs-body: 20px; /* texto, datos y enlaces del contenido */
+  --fs-ui: 16px; /* marco de la página: barra superior, botones, navegación, pie */
+  /* Espaciado: escala de 4px nombrada por relación. Cuanto más relacionado está
+     el contenido, más pegado va; la tipografía y el espacio cuentan lo mismo. */
+  --gap-pair: 4px; /* dos líneas que se leen como una: nombre+bio, texto+ficha, etiqueta+valor */
+  --gap-caption: 8px; /* objeto → su pie; elementos en línea (pills) */
+  --gap-object: 12px; /* titular → su imagen */
+  --gap-text: 16px; /* imagen → texto; párrafo → párrafo */
+  --gap-group: 24px; /* grupos dentro de un componente */
+  --gutter: 40px; /* margen de página, el mismo a los lados y abajo (petición del usuario) */
+  --gap-block: 48px; /* bloques dentro de una sección; columnas */
+  --gap-item: 96px; /* elemento → elemento en una lista (posts) */
+  --gap-section: clamp(72px, 9vw, 128px); /* contenido → pie de página */
+  --radius: 6px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-curtain: cubic-bezier(0.22, 0.61, 0.36, 1); /* solo el telón: arranca ya, aterriza suave */
+  --reveal-d: 56px; /* cuánto viajan las capas con el telón */
+  /* Alto de la barra: el botón Contact queda a --gutter del borde de arriba,
+     el mismo margen que a los lados y abajo (petición del usuario). */
+  --bar: calc(var(--gutter) + 38px);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 80px;
+  /* Sin barra de scroll: ocupaba 10px y el margen derecho parecía mayor que el
+     izquierdo (petición del usuario). Se sigue desplazando igual. */
+  scrollbar-width: none;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+ol,
+ul {
+  padding: 0;
+  list-style: none;
+}
+h1,
+h2,
+h3,
+.crumb-name {
+  font-weight: var(--w-head);
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 8px 14px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 999px;
+  transform: translateY(-150%);
+  transition: transform 0.2s var(--ease-out);
+}
+.skip:focus {
+  transform: none;
+}
+
+.meta {
+  color: var(--faint);
+}
+/* Enlaces y acciones secundarias: dato en reposo, contenido al pasar. */
+.text-link {
+  display: inline-block;
+  color: var(--faint);
+  white-space: nowrap;
+  transition: color 0.2s var(--ease-out);
+}
+.text-link:hover {
+  color: var(--ink);
+}
+/* Copiar correo: encima de la dirección, el cursor es una pastilla de tinta
+   que dice "Copy" (y "Copied" al pulsar). Solo con ratón. */
+.cursor-tag {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .copy-email {
+    cursor: none;
+  }
+  .cursor-tag {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    pointer-events: none;
+  }
+  /* Las dos etiquetas comparten celda; la pastilla anima su ancho entre las dos
+     medidas (--w-copy, --w-done) y recorta la que sale. */
+  .tag-pill {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    translate: -50% -50%;
+    width: var(--w-copy, auto);
+    height: 32px; /* el alto de las pills de la web */
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--bg);
+    font-size: 14px;
+    line-height: 1;
+    white-space: nowrap;
+    animation: tag-in 0.3s var(--ease-out) both;
+    transition: width 0.45s var(--ease-out);
+  }
+  .cursor-tag[data-done] .tag-pill {
+    width: var(--w-done, auto);
+  }
+  .tag-label {
+    grid-area: 1 / 1;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    justify-self: unsafe center; /* centrada aunque aún no quepa mientras la pastilla crece */
+    padding: 0 14px;
+    transition:
+      translate 0.45s var(--ease-out),
+      opacity 0.3s var(--ease-out),
+      filter 0.3s var(--ease-out);
+  }
+  .tag-label:last-child,
+  .cursor-tag[data-done] .tag-label:first-child {
+    translate: 0 100%;
+    opacity: 0;
+    filter: blur(2px);
+  }
+  .cursor-tag[data-done] .tag-label:first-child {
+    translate: 0 -100%;
+  }
+  .cursor-tag[data-done] .tag-label:last-child {
+    translate: none;
+    opacity: 1;
+    filter: none;
+  }
+}
+@keyframes tag-in {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tag-label {
+    translate: none !important;
+  }
+}
+/* Flecha tipográfica: alto = x-height, apoyada en la línea base. */
+.ex-arrow {
+  display: inline;
+  width: auto;
+  height: 1ex;
+  vertical-align: baseline;
+  overflow: visible;
+}
+.ex-up-right,
+.ex-right {
+  margin-left: 0.28em;
+}
+.ex-left {
+  margin-right: 0.28em;
+}
+.num {
+  font-variant-numeric: tabular-nums;
+}
+.link {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s;
+}
+.link:hover {
+  text-decoration-color: currentColor;
+}
+
+/* ───────── Botones y chips ───────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: var(--fs-ui);
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s,
+    color 0.15s,
+    transform 0.15s var(--ease-out);
+}
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+.btn.primary {
+  background: var(--ink);
+  color: var(--bg);
+}
+.btn.primary:hover {
+  background: var(--ink-hover);
+}
+
+
+
+.avatar {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--bg);
+  line-height: 1;
+  user-select: none;
+  object-fit: cover;
+}
+.avatar.xs {
+  width: 28px;
+  height: 28px;
+  font-size: 11px;
+}
+.avatar.sm {
+  width: 32px;
+  height: 32px;
+  font-size: 13px;
+}
+.avatar.lg {
+  width: 64px;
+  height: 64px;
+  font-size: 22px;
+}
+
+/* ───────── Barra superior ───────── */
+
+/* Sin fondo ni borde: flota sobre las columnas laterales, que están vacías arriba. */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+.topbar-inner > * {
+  pointer-events: auto;
+}
+/* Por debajo de 1200px el contenido llega a los bordes: la barra se va con el scroll
+   para no taparlo. */
+@media (max-width: 1200px) {
+  .topbar {
+    position: relative;
+  }
+}
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-text);
+  max-width: var(--page);
+  height: var(--bar);
+  margin: 0 auto;
+  padding: var(--gutter) var(--gutter) 0;
+}
+.crumbs {
+  max-width: 280px; /* el ancho mínimo de la columna lateral: nunca pisa la central */
+  font-size: var(--fs-ui);
+  display: flex;
+  align-items: center;
+  gap: var(--gap-object);
+  min-width: 0;
+}
+.crumb-home {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-object);
+  flex: none;
+}
+.crumb-sep {
+  color: var(--faint);
+}
+.crumb-current {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--faint);
+}
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-group);
+  font-size: var(--fs-ui);
+  flex: none;
+  margin-left: auto; /* a la derecha también cuando la barra no lleva migas */
+}
+
+/* ───────── Layout ───────── */
+
+.layout {
+  display: grid;
+  /* Columnas laterales simétricas: el feed queda en el centro exacto de la página. */
+  grid-template-columns: minmax(280px, 1fr) minmax(0, var(--feed)) minmax(280px, 1fr);
+  gap: var(--gap-block);
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: var(--gap-block) var(--gutter) 0;
+}
+.aside-sticky {
+  position: sticky;
+  top: calc(var(--bar) + var(--gap-block));
+}
+/* En el feed el perfil se ancla abajo del viewport, como en un perfil de red social. */
+.aside-sticky:has(.profile) {
+  top: var(--bar);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: calc(100dvh - var(--bar));
+  margin-top: calc(-1 * var(--gap-block));
+  padding-bottom: var(--gutter); /* mismo margen abajo que a los lados */
+}
+/* EN / ES: con la voz de la ubicación (tamaño de texto, gris claro); el idioma
+   activo en tinta. En el feed, en la esquina de arriba a la izquierda, a un margen
+   de los dos bordes como la ubicación en la suya; en el case study, bajo Volver. */
+.lang {
+  display: flex;
+  gap: 0.3em;
+  font-size: var(--fs-body);
+  line-height: 1.15;
+  color: var(--faint);
+}
+.topbar .lang {
+  align-self: flex-start;
+}
+.lang button {
+  color: inherit;
+  transition: color 0.2s var(--ease-out);
+}
+.lang button:hover,
+.lang button[aria-pressed="true"] {
+  color: var(--ink);
+}
+.cs-back + .lang {
+  margin-top: var(--gap-text);
+}
+/* Case study, columna derecha: EN / ES en la esquina de arriba y la web del
+   proyecto en la de abajo, los dos a un margen de los bordes. */
+.layout.cs .side .aside-sticky {
+  justify-content: space-between;
+  margin-top: calc(-1 * var(--gutter));
+  padding-top: var(--gutter);
+}
+/* Con columna derecha, el EN / ES de la izquierda sobra. */
+.lang-narrow {
+  display: none;
+}
+@media (max-width: 1200px) {
+  .lang-narrow {
+    display: flex;
+  }
+}
+/* La web del proyecto entra al bajar un poco: sube 8px mientras aparece. */
+.project-link {
+  opacity: 0;
+  translate: 0 8px;
+  pointer-events: none;
+  transition:
+    opacity 0.45s var(--ease-out),
+    translate 0.45s var(--ease-out),
+    color 0.2s var(--ease-out);
+}
+.project-link[data-shown] {
+  opacity: 1;
+  translate: none;
+  pointer-events: auto;
+}
+/* El feed y el case study viven en la columna central de 680px, centrada en la
+   página (decisión del usuario). */
+.main {
+  min-width: 0;
+  grid-column: 2;
+}
+.aside {
+  grid-column: 1;
+  max-width: 300px;
+}
+/* Columna derecha del feed, reflejo del perfil: de dónde es, anclado abajo a la
+   misma distancia del borde y en la línea de su último enlace. */
+.side {
+  grid-column: 3;
+  min-width: 0;
+}
+.side .aside-sticky {
+  top: var(--bar);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: calc(100dvh - var(--bar));
+  margin-top: calc(-1 * var(--gap-block));
+  padding-bottom: var(--gutter);
+}
+.location,
+.profile-loc {
+  color: var(--faint);
+}
+/* En el perfil solo cuando no hay columna derecha. */
+.profile-loc {
+  display: none;
+  margin-top: var(--gap-group);
+}
+
+@media (max-width: 1200px) {
+  .layout {
+    grid-template-columns: 280px minmax(0, 1fr);
+  }
+  .side {
+    display: none;
+  }
+  .profile-loc {
+    display: block;
+  }
+}
+
+/* ───────── Perfil ───────── */
+
+/* Perfil: avatar, nombre, bio, pills y enlaces con un único intervalo (--gap-group). */
+.profile-id {
+  margin-top: var(--gap-text);
+  text-box: trim-both cap alphabetic;
+  font-size: var(--fs-title);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--faint);
+}
+.profile-bio {
+  margin-top: var(--gap-text);
+  text-box: trim-both cap alphabetic;
+  font-size: var(--fs-title);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-pair) var(--gap-group);
+  margin-top: var(--gap-group);
+}
+/* Herramientas: pills con tipografía de interfaz (objetos, no texto corrido). */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-caption);
+  margin-top: var(--gap-group);
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--fill);
+  font-size: var(--fs-ui);
+  line-height: 1;
+  color: var(--ink);
+}
+
+/* ───────── Feed ───────── */
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-item);
+}
+.post-head {
+  display: flex;
+  /* El enlace al caso, en la línea del título que toca la imagen (aunque el título
+     ocupe dos líneas), no centrado con el bloque. */
+  align-items: flex-end;
+  align-items: last baseline;
+  gap: var(--gap-text);
+  margin: 0 0 var(--gap-object);
+}
+.post-head .post-title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+}
+.post-title {
+  margin: 6px 0 16px;
+  font-size: var(--fs-title);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.post-title a {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.35s var(--ease-out);
+}
+.post-title a:hover {
+  background-size: 100% 1px;
+}
+/* Pie del post: la descripción a la izquierda, a todo lo ancho, y debajo la ficha
+   (rol · plataforma), en cualquier ancho (decisión del usuario). */
+.post-foot {
+  margin-top: var(--gap-text);
+}
+.exif {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: var(--gap-pair);
+  color: var(--faint);
+}
+.exif span:not(:last-child)::after {
+  content: "·";
+  margin: 0 0.3em;
+  color: var(--faint);
+}
+
+.btn svg {
+  flex: none;
+}
+.post-head-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-caption);
+  margin-left: auto;
+}
+/* Case study: mismo estilo que la ficha bajo la descripción (20px, gris claro);
+   pasa a tinta al pasar por él o por la imagen. */
+.btn-case {
+  display: inline-block;
+  white-space: nowrap;
+  color: var(--faint);
+  transition: color 0.25s var(--ease-out);
+}
+.btn-case:hover,
+.post:has(.media-link:hover) .btn-case {
+  color: var(--ink);
+}
+
+.icon-action {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--faint);
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+}
+.icon-action:hover {
+  background: var(--fill);
+  color: var(--ink);
+}
+.copied {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 16px;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition:
+    opacity 0.2s,
+    transform 0.3s var(--ease-out);
+}
+.copied[data-on] {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ───────── Media ───────── */
+
+.media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius);
+  background: var(--fill);
+}
+.media img,
+.media svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Hover = esto se abre: velo, zoom leve y una pastilla que dice adónde lleva. */
+.media-link {
+  position: relative;
+  display: block;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.media-link .media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(39 39 36 / 0);
+  transition: background-color 0.3s var(--ease-out);
+}
+.media-link .media svg,
+.media-link .media img {
+  transition: transform 0.6s var(--ease-out);
+}
+.media-link:hover .media::after {
+  background: rgb(39 39 36 / 0.06);
+}
+.media-link:hover .media svg,
+.media-link:hover .media img {
+  transform: scale(1.02);
+}
+/* Flecha abajo a la derecha, blanca o negra según el fondo de la imagen (data-bg). */
+.open-hint {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  color: var(--ink);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-6px, 6px);
+  transition:
+    opacity 0.25s var(--ease-out),
+    transform 0.4s var(--ease-out);
+}
+.media-link:has(.media[data-bg="dark"]) .open-hint {
+  color: #ffffff;
+}
+.media-link:hover .open-hint {
+  opacity: 1;
+  transform: none;
+}
+@media (hover: none) {
+  .open-hint {
+    display: none;
+  }
+}
+
+/* Escena de producto: la foto de fondo a sangre, la web en su ventana cortada
+   por el borde izquierdo y el móvil a la derecha, sin tocarse: entre los dos queda
+   un hueco limpio. Sin sombras. Todo se mide en cqw (ancho de la escena) para que
+   la composición sea la misma a cualquier tamaño. */
+.stage {
+  container-type: inline-size;
+}
+.stage video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.stage-web,
+.stage-phone {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* La ventana sale por el borde izquierdo, como en el hero: la escena la corta.
+   Mide lo mismo de alto que el móvil (80%) y termina en el 62%; el móvil empieza
+   en el 66,7% (100 − 7 − su ancho de 26,3), así que nunca se tocan. */
+.stage-web {
+  right: 38%;
+  height: 80%;
+  aspect-ratio: 1440 / 932;
+  overflow: hidden;
+  border-radius: 0.9cqw;
+  background: #fff;
+}
+/* Sola (sin móvil), la ventana va centrada y grande, y baja hasta salirse por el
+   borde de abajo: la escena la corta (petición del usuario). */
+.stage.solo .stage-web {
+  top: 17%;
+  right: auto;
+  left: 50%;
+  width: 86%;
+  height: auto;
+  transform: translateX(-50%);
+}
+/* El móvil es solo su pantalla, sin marco ni barra de estado (recortada en el vídeo). */
+.stage-phone {
+  right: 7%;
+  height: 80%;
+  aspect-ratio: 590 / 1196;
+  overflow: hidden;
+  border-radius: 1.4cqw;
+  background: #fff;
+}
+
+.carousel {
+  position: relative;
+}
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  border-radius: var(--radius);
+}
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+.carousel-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+.carousel-slide .media {
+  border-radius: 0;
+}
+/* ───────── Case study ───────── */
+
+/* El post abierto: la misma rejilla y la misma columna central que el feed, así que
+   al abrirlo el título crece en su sitio. Solo la galería se sale por la derecha
+   hasta el borde de la pantalla. Donde está el perfil, el índice. */
+.layout.cs {
+  /* Lo que separa el borde derecho de la columna del borde de la pantalla. La columna
+     está centrada, así que es la mitad de lo que sobra (el % se resuelve contra la
+     columna, donde se usa). */
+  --bleed-r: calc((100vw - 100%) / 2);
+  overflow-x: clip;
+  /* Centrado como el feed pero mucho más ancho (petición del usuario): las laterales
+     bajan a 160px, lo justo para el índice, y el centro llega hasta 1120px. */
+  grid-template-columns: minmax(160px, 1fr) minmax(0, 1120px) minmax(160px, 1fr);
+  /* Sin barra superior (petición del usuario): la página empieza a un margen del
+     borde, el mismo que a los lados. */
+  --bar: 0px;
+  padding-top: var(--gutter);
+}
+.layout.cs .aside-sticky:has(.toc) {
+  margin-top: calc(-1 * var(--gutter));
+  padding-top: var(--gutter);
+}
+/* Con dos columnas la del contenido ya llega al margen derecho. */
+@media (max-width: 1200px) {
+  .layout.cs {
+    --bleed-r: var(--gutter);
+    grid-template-columns: 280px minmax(0, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .layout.cs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+/* Capítulo: el texto siempre debajo de su titular, a todo el ancho de la columna
+   central (la misma del feed); la columna es la que mide, no el texto. */
+.cs-chapter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: var(--gap-group);
+}
+.cs-head > .cs-chapter {
+  margin-top: var(--gap-group);
+}
+/* En la cabecera, la descripción va antes que la ficha, como en el feed. */
+.cs-head .cs-lede {
+  order: -1;
+  margin-bottom: var(--gap-group);
+}
+/* La columna del índice habla como el nombre del perfil en el feed: tamaño de
+   título, gris claro; lo que se está leyendo, en tinta. */
+.cs-back,
+.toc {
+  font-size: var(--fs-title);
+  font-weight: var(--w-head); /* un punto más que el texto (petición del usuario) */
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+/* Columna a toda la altura, como el perfil del feed: volver arriba (a la altura
+   del título) y el índice anclado abajo, a la misma distancia del borde que el perfil. */
+.aside-sticky:has(.toc) {
+  top: var(--bar);
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - var(--bar));
+  margin-top: calc(-1 * var(--gap-block));
+  padding-top: var(--gap-block); /* volver, a la altura del título */
+  padding-bottom: var(--gutter); /* mismo margen abajo que a los lados */
+}
+.toc {
+  margin-top: auto;
+}
+.toc a {
+  display: block;
+  padding-block: var(--gap-pair);
+  color: var(--faint);
+  transition: color 0.2s var(--ease-out);
+}
+.toc a:hover,
+.toc a[aria-current] {
+  color: var(--ink);
+}
+
+
+.cs-title {
+  font-size: var(--fs-display);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.cs-lede {
+  color: var(--ink-2);
+}
+/* Ficha en la columna del titular: etiqueta sobre valor, en filas. */
+/* Cada dato mide lo que su valor: así un rol largo no se parte en dos líneas. */
+.cs-spec {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-text) var(--gap-block);
+}
+.cs-spec dt {
+  color: var(--faint);
+}
+.cs-spec dd {
+  margin-top: var(--gap-pair);
+}
+/* Enlace al producto: un valor más de la ficha (tinta), con el subrayado del título al hover. */
+.cs-site {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.35s var(--ease-out);
+}
+.cs-site:hover {
+  background-size: 100% 1px;
+}
+.cs-hero {
+  margin-top: var(--gap-block);
+}
+/* A lo ancho, el trabajo pasa a 3:2: más escenario, menos alto que recorrer. */
+.cs-hero .media,
+.cs-section > .cs-figure .media {
+  aspect-ratio: 3 / 2;
+}
+/* Parallax de entrada: con el telón, la columna del case study sube y sus
+   imágenes la siguen con retraso y más recorrido, así se leen dos planos. La
+   página nueva es una vista viva, así que el movimiento se ve dentro del barrido. */
+html[data-reveal="up"] .cs > .main {
+  animation: reveal-rise 1.15s var(--ease-out) both;
+}
+/* Al abrir, a la vez que la columna, cada imagen del case study sube entera, con
+   su marco, desde más abajo (hero, figuras, escena). Se mueve la caja,
+   no la foto dentro de ella (petición del usuario). */
+html[data-reveal="up"] .cs .media {
+  animation: reveal-lift 1.6s var(--ease-out) both;
+}
+/* En el feed solo se mueve la columna central (la única que hace scroll);
+   perfil y barra se quedan quietos. Toda la pila va en un sentido: al abrir
+   sube, al cerrar baja. Así que al volver la columna baja a su sitio y las
+   imágenes de los posts se asientan dentro de su marco. */
+html[data-reveal="down"] .layout:not(.cs) > .main {
+  animation: reveal-fall 1.15s var(--ease-out) both;
+}
+html[data-reveal="down"] .feed .media > img,
+html[data-reveal="down"] .feed .media > svg {
+  animation: reveal-drift-down 1.45s var(--ease-out) both;
+}
+@keyframes reveal-rise {
+  from {
+    transform: translateY(var(--reveal-d));
+  }
+}
+@keyframes reveal-fall {
+  from {
+    transform: translateY(calc(-1 * var(--reveal-d)));
+  }
+}
+/* Al abrir la imagen llega desde abajo; al cerrar, desde arriba, con la columna. */
+@keyframes reveal-lift {
+  from {
+    transform: translateY(calc(var(--reveal-d) * 1.5));
+  }
+}
+@keyframes reveal-drift-down {
+  from {
+    transform: translateY(-3%) scale(1.06);
+  }
+}
+
+/* Capítulos separados como los posts del feed: solo aire, el mismo intervalo. */
+.cs-section {
+  margin-top: var(--gap-item);
+}
+.cs-h2 {
+  font-size: var(--fs-heading);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+.cs-p {
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.cs-p + .cs-p {
+  margin-top: var(--gap-text);
+}
+
+/* Puntos y cifras: filas de ficha entre hairlines, sin tarjetas. */
+.cs-list {
+  margin-top: var(--gap-group);
+  border-bottom: 1px solid var(--line);
+}
+.cs-list > * {
+  padding-block: var(--gap-text);
+  border-top: 1px solid var(--line);
+}
+.cs-chapter-body > .cs-list:first-child {
+  margin-top: 0;
+}
+.cs-list-text {
+  margin-top: var(--gap-pair);
+  color: var(--ink-2);
+}
+/* Cifra a la izquierda, qué mide a la derecha, en la misma línea base. */
+.cs-stats > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  align-items: baseline;
+  gap: var(--gap-text);
+}
+.cs-stats dd {
+  grid-row: 1;
+  font-size: var(--fs-heading);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+.cs-stats dt {
+  color: var(--faint);
+}
+
+.cs-figure {
+  margin-top: var(--gap-block);
+}
+/* Puntos con figura: una fila a todo lo ancho, cada figura sobre su título y su texto. */
+.cs-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap-block) var(--gap-group);
+  margin-top: var(--gap-block);
+}
+/* En su panel, como cualquier imagen del case study: mismo fondo, mismo radio. */
+.cs-points .hairline {
+  margin-bottom: var(--gap-text);
+  border-radius: var(--radius);
+  background: var(--fill);
+  --hairline-plate: var(--fill);
+}
+/* Cifra bajo su figura: tamaño de titular de sección, peso normal; su etiqueta debajo. */
+.cs-stat-value {
+  font-size: var(--fs-heading);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+/* Figuras de Hairline en la tinta de la casa: los grises salen de --ink, el plato es el suelo. */
+.hairline {
+  aspect-ratio: 5 / 4;
+  --hairline-plate: var(--bg);
+  --hairline-hi: var(--ink);
+  --hairline-edge: #a6a6a0;
+  --hairline-mid: #c6c6c0;
+  --hairline-lo: #d9d9d4;
+  --hairline-stroke: 1;
+}
+.hairline > svg {
+  width: 100%;
+  height: 100%;
+}
+.cs-figure figcaption {
+  margin-top: var(--gap-caption);
+  color: var(--faint);
+}
+/* Galería: una tira que arranca en el eje y se sale por el borde derecho de la
+   pantalla; la imagen cortada dice que hay más. Mismo scroll nativo que el carrusel. */
+.cs-rail {
+  display: flex;
+  gap: var(--gap-text);
+  margin-top: var(--gap-block);
+  margin-right: calc(-1 * var(--bleed-r));
+  padding-right: var(--bleed-r);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.cs-rail::-webkit-scrollbar {
+  display: none;
+}
+.cs-rail > .cs-figure {
+  flex: 0 0 min(560px, 78%);
+  margin-top: 0;
+  scroll-snap-align: start;
+}
+
+.cs-contact-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--gap-group);
+  margin-top: var(--gap-group);
+}
+
+.next-post {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-pair);
+  margin-top: var(--gap-item);
+}
+.next-title {
+  font-size: var(--fs-title);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: var(--w-head);
+}
+.next-title .ex-arrow {
+  transition: transform 0.3s var(--ease-out);
+}
+.next-label {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.35s var(--ease-out);
+}
+.next-post:hover .next-label {
+  background-size: 100% 1px;
+}
+.next-post:hover .ex-arrow {
+  transform: translateX(4px);
+}
+
+/* ───────── Pie ───────── */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--gap-section);
+  padding-bottom: var(--gutter);
+  font-size: var(--fs-ui);
+  color: var(--faint);
+}
+
+/* ───────── Responsive ───────── */
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--gap-block);
+  }
+  .main,
+  .aside {
+    grid-column: 1;
+    max-width: none;
+  }
+  .layout {
+    padding: var(--gap-group) var(--gutter) 0;
+  }
+  .aside-sticky,
+  .aside-sticky:has(.profile) {
+    position: static;
+    height: auto;
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+  :root {
+    --gutter: 16px;
+    --gap-item: 64px;
+  }
+  .profile {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--gap-text);
+    align-items: center;
+  }
+  .profile > :not(.avatar) {
+    grid-column: 1 / -1;
+  }
+  .profile .avatar.lg {
+    width: 52px;
+    height: 52px;
+    font-size: 18px;
+  }
+  .profile .profile-id {
+    grid-column: 2;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --fs-title: 22px;
+    --fs-body: 18px;
+  }
+  .hide-sm {
+    display: none;
+  }
+  .crumb-current {
+    display: none;
+  }
+  .crumb-sep {
+    display: none;
+  }
+  .post-head {
+    flex-wrap: wrap;
+    row-gap: var(--gap-caption);
+  }
+  .post-head .post-title {
+    flex-basis: 100%;
+  }
+  .post-head-actions {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Una columna: el índice sobra y la barra ya lleva al feed. */
+  /* Sin columna: Volver y EN / ES en una fila arriba (la barra ya no está para
+     llevar al feed); el índice sobra. */
+  .layout.cs > .aside .aside-sticky:has(.toc) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    height: auto;
+    margin-top: 0;
+    padding: 0;
+  }
+  .cs .cs-back + .lang {
+    margin-top: 0;
+  }
+  .cs > .aside .toc {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .cs-spec {
+    column-gap: var(--gap-group);
+  }
+  .cs-points {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Telón entre feed y case study. Las dos páginas existen a la vez: la nueva
+   se descubre bajo un borde limpio que cruza la pantalla, sin línea ni sombra.
+   Abrir un case study sube el borde; volver al feed lo baja, mismo tiempo. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+html[data-curtain="up"]::view-transition-new(root) {
+  animation: curtain-reveal-up 0.95s var(--ease-curtain) both;
+}
+/* Las capas de la página que se va. Al abrir, la columna del feed sube y se
+   pierde bajo el borde que asciende; al cerrar (la entrada al revés) el case
+   study queda encima, su borde superior baja hasta descubrir el feed y su
+   imagen grande baja con él. Cada capa comparte curva y duración con el telón,
+   así que su recorte (en coordenadas locales) es lineal y sigue el borde exacto. */
+html[data-curtain="up"] .layout:not(.cs) > .main {
+  view-transition-name: feed-col;
+}
+html[data-curtain="down"] .cs-hero {
+  view-transition-name: cs-hero;
+}
+html[data-curtain="down"]::view-transition-old(root) {
+  z-index: 1;
+  animation: curtain-hide-down 0.95s var(--ease-curtain) both;
+}
+::view-transition-group(feed-col),
+::view-transition-group(cs-hero) {
+  z-index: 2;
+  animation: none;
+}
+html[data-curtain="up"]::view-transition-old(feed-col) {
+  animation: feed-lift 0.95s var(--ease-curtain) both;
+}
+html[data-curtain="down"]::view-transition-old(cs-hero) {
+  animation: cs-hero-sink 0.95s var(--ease-curtain) both;
+}
+@keyframes curtain-reveal-up {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes curtain-hide-down {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    clip-path: inset(100% 0 0 0);
+  }
+}
+/* y = borde superior de la capa en pantalla, H = alto de pantalla, D = --reveal-d,
+   p = progreso del telón. */
+/* Abrir: borde en H·(1 − p), capa desplazada −D·p → en local (H − y) − p·(H − D). */
+@keyframes feed-lift {
+  from {
+    transform: translateY(0);
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% calc(var(--vt-h) - var(--vt-y)),
+      0 calc(var(--vt-h) - var(--vt-y))
+    );
+  }
+  to {
+    transform: translateY(calc(-1 * var(--reveal-d)));
+    clip-path: polygon(0 0, 100% 0, 100% calc(var(--reveal-d) - var(--vt-y)), 0 calc(var(--reveal-d) - var(--vt-y)));
+  }
+}
+/* Cerrar: borde en H·p, capa desplazada D·p → en local p·(H − D) − y. */
+@keyframes cs-hero-sink {
+  from {
+    transform: translateY(0);
+    clip-path: polygon(0 calc(0px - var(--vt-y)), 100% calc(0px - var(--vt-y)), 100% 100%, 0 100%);
+  }
+  to {
+    transform: translateY(var(--reveal-d));
+    clip-path: polygon(
+      0 calc(var(--vt-h) - var(--reveal-d) - var(--vt-y)),
+      100% calc(var(--vt-h) - var(--reveal-d) - var(--vt-y)),
+      100% 100%,
+      0 100%
+    );
+  }
+}
+
+/* Sin movimiento: ni barrido, un fundido corto entre páginas. */
+@media (prefers-reduced-motion: reduce) {
+  html[data-curtain] .cs-hero,
+  html[data-curtain] .layout:not(.cs) > .main {
+    view-transition-name: none;
+  }
+  html[data-curtain]::view-transition-old(root) {
+    animation: curtain-fade-out 0.2s linear both !important;
+  }
+  html[data-curtain]::view-transition-new(root) {
+    animation: curtain-fade-in 0.2s linear both !important;
+  }
+}
+@keyframes curtain-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes curtain-fade-in {
+  from {
+    opacity: 0;
+  }
+}

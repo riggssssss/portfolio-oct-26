@@ -1,0 +1,398 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T07:43:30+00:00",
+  "title": "Design System: Adrián García · Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "White Paper",
+        "canonical": "oklch(100% 0 0)",
+        "tonalRamp": [
+          "oklch(15% 0.0 106)",
+          "oklch(26% 0.0 106)",
+          "oklch(38% 0.0 106)",
+          "oklch(50% 0.0 106)",
+          "oklch(62% 0.0 106)",
+          "oklch(74% 0.0 106)",
+          "oklch(85% 0.0 106)",
+          "oklch(95% 0.0 106)"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Warm Graphite",
+        "canonical": "oklch(27.2% 0.005 107)",
+        "tonalRamp": [
+          "oklch(15% 0.003 107)",
+          "oklch(26% 0.003 107)",
+          "oklch(38% 0.005 107)",
+          "oklch(50% 0.005 107)",
+          "oklch(62% 0.005 107)",
+          "oklch(74% 0.005 107)",
+          "oklch(85% 0.003 107)",
+          "oklch(95% 0.003 107)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Pencil Grey",
+        "canonical": "oklch(47.3% 0.008 107)",
+        "tonalRamp": [
+          "oklch(15% 0.004 107)",
+          "oklch(26% 0.004 107)",
+          "oklch(38% 0.008 107)",
+          "oklch(50% 0.008 107)",
+          "oklch(62% 0.008 107)",
+          "oklch(74% 0.008 107)",
+          "oklch(85% 0.004 107)",
+          "oklch(95% 0.004 107)"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Faded Graphite",
+        "canonical": "oklch(63.8% 0.009 107)",
+        "tonalRamp": [
+          "oklch(15% 0.004 107)",
+          "oklch(26% 0.004 107)",
+          "oklch(38% 0.009 107)",
+          "oklch(50% 0.009 107)",
+          "oklch(62% 0.009 107)",
+          "oklch(74% 0.009 107)",
+          "oklch(85% 0.004 107)",
+          "oklch(95% 0.004 107)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(93.0% 0.004 106)",
+        "tonalRamp": [
+          "oklch(15% 0.002 106)",
+          "oklch(26% 0.002 106)",
+          "oklch(38% 0.004 106)",
+          "oklch(50% 0.004 106)",
+          "oklch(62% 0.004 106)",
+          "oklch(74% 0.004 106)",
+          "oklch(85% 0.002 106)",
+          "oklch(95% 0.002 106)"
+        ]
+      },
+      "fill": {
+        "role": "neutral",
+        "displayName": "Smudge",
+        "canonical": "oklch(96.1% 0.003 106)",
+        "tonalRamp": [
+          "oklch(15% 0.002 106)",
+          "oklch(26% 0.002 106)",
+          "oklch(38% 0.003 106)",
+          "oklch(50% 0.003 106)",
+          "oklch(62% 0.003 106)",
+          "oklch(74% 0.003 106)",
+          "oklch(85% 0.002 106)",
+          "oklch(95% 0.002 106)"
+        ]
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Raised Paper",
+        "canonical": "oklch(100% 0 0)",
+        "tonalRamp": [
+          "oklch(15% 0.0 106)",
+          "oklch(26% 0.0 106)",
+          "oklch(38% 0.0 106)",
+          "oklch(50% 0.0 106)",
+          "oklch(62% 0.0 106)",
+          "oklch(74% 0.0 106)",
+          "oklch(85% 0.0 106)",
+          "oklch(95% 0.0 106)"
+        ]
+      },
+      "live": {
+        "role": "tertiary",
+        "displayName": "Available Green",
+        "canonical": "oklch(56.4% 0.126 151)",
+        "tonalRamp": [
+          "oklch(15% 0.063 151)",
+          "oklch(26% 0.063 151)",
+          "oklch(38% 0.126 151)",
+          "oklch(50% 0.126 151)",
+          "oklch(62% 0.126 151)",
+          "oklch(74% 0.126 151)",
+          "oklch(85% 0.063 151)",
+          "oklch(95% 0.063 151)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "the case-study title. One per page."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "chapter headings inside a case study. The next-post link uses the same size at 400 (22px under 600px)."
+      },
+      "post-title": {
+        "displayName": "Post Title",
+        "purpose": "post titles in the feed (22px under 600px). Hover draws a 1px underline from the left over 0.35s."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "the profile bio, which is the home page's h1 (21px under 900px)."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "the case-study standfirst."
+      },
+      "body-long": {
+        "displayName": "Body Long",
+        "purpose": "case-study chapter paragraphs (16px under 600px)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "post captions (max 62ch) and the base size."
+      },
+      "name": {
+        "displayName": "Name",
+        "purpose": "the person's name wherever it appears as an identity: top-bar breadcrumb, profile, byline."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "buttons, breadcrumb trail, byline, back link, spec values."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "dates, chips, the outline pill, stats, the table-of-contents title, the footer."
+      },
+      "spec": {
+        "displayName": "Spec",
+        "purpose": "the catalogue line under each post and figure captions."
+      },
+      "spec-sm": {
+        "displayName": "Spec Small",
+        "purpose": "spec-sheet labels (Rol, Equipo, Duración, Plataforma)."
+      }
+    },
+    "shadows": [
+      {
+        "name": "live-halo",
+        "value": "0 0 0 3px rgb(47 138 78 / 0.15)",
+        "purpose": "Halo around the 7px availability dot. The only box-shadow in the build; not elevation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The single easing curve (expo-out) for every transition."
+      },
+      {
+        "name": "duration-color",
+        "value": "150ms",
+        "purpose": "Colour, background and border changes on buttons, chips, links."
+      },
+      {
+        "name": "duration-press",
+        "value": "150ms",
+        "purpose": "Button press scale to 0.97."
+      },
+      {
+        "name": "duration-veil",
+        "value": "300ms",
+        "purpose": "Media hover veil (ink at 6%)."
+      },
+      {
+        "name": "duration-underline",
+        "value": "350ms",
+        "purpose": "Post-title underline drawing from the left."
+      },
+      {
+        "name": "duration-hint",
+        "value": "250ms opacity / 400ms transform",
+        "purpose": "Media hover arrow easing in from a 6px diagonal offset."
+      },
+      {
+        "name": "duration-zoom",
+        "value": "600ms",
+        "purpose": "Media zoom to 1.02 on hover."
+      },
+      {
+        "name": "feedback-hold",
+        "value": "1800ms",
+        "purpose": "How long copy feedback (check icon, 'Copiado', link tooltip) stays."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "two-column",
+        "value": "1200px",
+        "purpose": "At and below: 280px aside + fluid main; top bar stops sticking."
+      },
+      {
+        "name": "one-column",
+        "value": "900px",
+        "purpose": "At and below: single column, 16px gutters, profile becomes header, TOC hidden, 56px top bar."
+      },
+      {
+        "name": "compact",
+        "value": "600px",
+        "purpose": "At and below: secondary top-bar buttons and breadcrumb trail hide; post actions wrap under the title; spec sheet 2 columns."
+      }
+    ],
+    "layout": {
+      "page": "1680px",
+      "feed": "680px",
+      "columns": "minmax(280px, 1fr) minmax(0, 680px) minmax(280px, 1fr)",
+      "gap": "48px",
+      "gutter": "32px (16px under 900px)",
+      "asideMax": "300px",
+      "topbar": "60px (56px under 900px)"
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one filled pill: Contactar in the top bar, visible at every width.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Contactar</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border: 0; border-radius: 999px; font-family: var(--sans, Figtree, 'Helvetica Neue', Arial, sans-serif); font-size: 14px; font-weight: 400; line-height: 1; white-space: nowrap; cursor: pointer; transition: background-color .15s, color .15s, border-color .15s, transform .15s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn:active { transform: scale(.97); } .ds-btn:focus-visible { outline: 2px solid #272724; outline-offset: 3px; } .ds-btn-primary { background: #272724; color: #FFFFFF; } .ds-btn-primary:hover { background: #3A3A36; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary top-bar actions (Copiar email, CV); hover washes to fill.",
+      "html": "<button class=\"ds-btn ds-btn-ghost\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"7\" y=\"7\" width=\"9\" height=\"9\" rx=\"1.5\"/><path d=\"M13 7V5.5A1.5 1.5 0 0 0 11.5 4h-6A1.5 1.5 0 0 0 4 5.5v6A1.5 1.5 0 0 0 5.5 13H7\"/></svg>Copiar email</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border: 0; border-radius: 999px; font-family: var(--sans, Figtree, 'Helvetica Neue', Arial, sans-serif); font-size: 14px; font-weight: 400; line-height: 1; white-space: nowrap; cursor: pointer; transition: background-color .15s, color .15s, border-color .15s, transform .15s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn:active { transform: scale(.97); } .ds-btn:focus-visible { outline: 2px solid #272724; outline-offset: 3px; } .ds-btn-ghost { background: transparent; color: #272724; } .ds-btn-ghost:hover { background: #F2F2F0; } .ds-btn svg { flex: none; }"
+    },
+    {
+      "name": "Outline Pill",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "'Leer case study' on every feed post; border darkens and the arrow slides 2px on hover.",
+      "html": "<a href=\"#\" class=\"ds-btn ds-btn-outline\">Leer case study <svg width=\"15\" height=\"15\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4.5 10h11M11.25 5.75 15.5 10l-4.25 4.25\"/></svg></a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border: 0; border-radius: 999px; font-family: var(--sans, Figtree, 'Helvetica Neue', Arial, sans-serif); font-size: 14px; font-weight: 400; line-height: 1; white-space: nowrap; cursor: pointer; transition: background-color .15s, color .15s, border-color .15s, transform .15s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn:active { transform: scale(.97); } .ds-btn:focus-visible { outline: 2px solid #272724; outline-offset: 3px; } .ds-btn-outline { height: 32px; padding: 0 12px 0 14px; background: transparent; color: #272724; border: 1px solid #E8E8E5; font-size: 13px; text-decoration: none; } .ds-btn-outline:hover { border-color: #8C8C86; } .ds-btn-outline svg { flex: none; transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-outline:hover svg { transform: translateX(2px); }"
+    },
+    {
+      "name": "Share Icon Button",
+      "kind": "button",
+      "refersTo": "icon-action",
+      "description": "32px circle with a thin 1.1px share icon; copies the post link and shows an ink tooltip.",
+      "html": "<button class=\"ds-icon-action\" aria-label=\"Compartir\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.1\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10 12.5V3.75M6.75 6.75 10 3.5l3.25 3.25M5.75 10H5a1.25 1.25 0 0 0-1.25 1.25v3.5A1.25 1.25 0 0 0 5 16h10a1.25 1.25 0 0 0 1.25-1.25v-3.5A1.25 1.25 0 0 0 15 10h-.75\"/></svg></button>",
+      "css": ".ds-icon-action { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #5C5C57; cursor: pointer; transition: background-color .15s, color .15s; } .ds-icon-action:hover { background: #F2F2F0; color: #272724; } .ds-icon-action:focus-visible { outline: 2px solid #272724; outline-offset: 3px; }"
+    },
+    {
+      "name": "Chips",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Link chips (1px hairline, availability chip leads with the green dot) and filled tool chips.",
+      "html": "<div class=\"ds-chips\"><a href=\"#\" class=\"ds-chip\"><span class=\"ds-live-dot\"></span>Disponible para trabajar</a><a href=\"#\" class=\"ds-chip\">LinkedIn <span class=\"ds-chip-ic\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6.5 13.5l7-7M7.5 6.5h6v6\"/></svg></span></a><span class=\"ds-chip ds-chip-filled\">Figma</span><span class=\"ds-chip ds-chip-filled\">Framer</span></div>",
+      "css": ".ds-chips { display: flex; flex-wrap: wrap; gap: 6px; font-family: var(--sans, Figtree, 'Helvetica Neue', Arial, sans-serif); } .ds-chip { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border: 1px solid #E8E8E5; border-radius: 999px; font-size: 13px; line-height: 1; color: #272724; text-decoration: none; transition: border-color .15s, background-color .15s; } a.ds-chip:hover { border-color: #8C8C86; background: #FFFFFF; } a.ds-chip:focus-visible { outline: 2px solid #272724; outline-offset: 3px; } .ds-chip-ic { color: #5C5C57; display: inline-flex; } .ds-chip-filled { border-color: transparent; background: #F2F2F0; color: #5C5C57; } .ds-live-dot { width: 7px; height: 7px; border-radius: 50%; background: #2F8A4E; box-shadow: 0 0 0 3px rgb(47 138 78 / .15); }"
+    },
+    {
+      "name": "Top Bar",
+      "kind": "nav",
+      "refersTo": "topbar",
+      "description": "No fill, no border: avatar, name, slash and current page left; ghost and primary pills right.",
+      "html": "<header class=\"ds-topbar\"><nav class=\"ds-crumbs\"><a href=\"#\" class=\"ds-crumb-home\"><span class=\"ds-avatar\">AG</span><span class=\"ds-crumb-name\">Adrián García</span></a><span class=\"ds-crumb-sep\">/</span><span class=\"ds-crumb-current\">Publicaciones</span></nav><div class=\"ds-topbar-actions\"><button class=\"ds-tb-btn ds-tb-ghost\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"7\" y=\"7\" width=\"9\" height=\"9\" rx=\"1.5\"/><path d=\"M13 7V5.5A1.5 1.5 0 0 0 11.5 4h-6A1.5 1.5 0 0 0 4 5.5v6A1.5 1.5 0 0 0 5.5 13H7\"/></svg>Copiar email</button><a href=\"#\" class=\"ds-tb-btn ds-tb-primary\">Contactar</a></div></header>",
+      "css": ".ds-topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; padding: 0 32px; background: transparent; font-family: var(--sans, Figtree, 'Helvetica Neue', Arial, sans-serif); color: #272724; } .ds-crumbs { display: flex; align-items: center; gap: 10px; min-width: 0; font-size: 14px; } .ds-crumb-home { display: flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; } .ds-avatar { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #272724; color: #FFFFFF; font-size: 11px; line-height: 1; } .ds-crumb-name { font-weight: 500; } .ds-crumb-sep { color: #8C8C86; } .ds-crumb-current { color: #5C5C57; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .ds-topbar-actions { display: flex; align-items: center; gap: 4px; } .ds-tb-btn { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border: 0; border-radius: 999px; font: inherit; font-size: 14px; line-height: 1; text-decoration: none; cursor: pointer; transition: background-color .15s; } .ds-tb-ghost { background: transparent; color: #272724; } .ds-tb-ghost:hover { background: #F2F2F0; } .ds-tb-primary { background: #272724; color: #FFFFFF; } .ds-tb-primary:hover { background: #3A3A36; } .ds-tb-btn:focus-visible, .ds-crumb-home:focus-visible { outline: 2px solid #272724; outline-offset: 3px; }"
+    },
+    {
+      "name": "Media Hover",
+      "kind": "custom",
+      "refersTo": "media",
+      "description": "Raw 4:3 media; hover adds a 6% ink veil, 1.02 zoom and a 44px arrow that is ink on light images, white on dark (data-bg).",
+      "html": "<div class=\"ds-media-pair\"><a href=\"#\" class=\"ds-media-link\"><div class=\"ds-media\" data-bg=\"light\"></div><span class=\"ds-open-hint\"><svg width=\"44\" height=\"44\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6.5 13.5l7-7M7.5 6.5h6v6\"/></svg></span></a><a href=\"#\" class=\"ds-media-link\"><div class=\"ds-media\" data-bg=\"dark\"></div><span class=\"ds-open-hint\"><svg width=\"44\" height=\"44\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6.5 13.5l7-7M7.5 6.5h6v6\"/></svg></span></a></div>",
+      "css": ".ds-media-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; } .ds-media-link { position: relative; display: block; border-radius: 6px; } .ds-media-link:focus-visible { outline: 2px solid #272724; outline-offset: 3px; } .ds-media { position: relative; overflow: hidden; aspect-ratio: 4 / 3; border-radius: 6px; background: #EEEEEB; transition: transform .6s cubic-bezier(0.16, 1, 0.3, 1); } .ds-media[data-bg=dark] { background: #272724; } .ds-media::after { content: ''; position: absolute; inset: 0; background: rgb(39 39 36 / 0); transition: background-color .3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-media-link:hover .ds-media::after { background: rgb(39 39 36 / .06); } .ds-open-hint { position: absolute; right: 16px; bottom: 16px; color: #272724; pointer-events: none; opacity: 0; transform: translate(-6px, 6px); transition: opacity .25s cubic-bezier(0.16, 1, 0.3, 1), transform .4s cubic-bezier(0.16, 1, 0.3, 1); } .ds-media-link:has(.ds-media[data-bg=dark]) .ds-open-hint { color: #FFFFFF; } .ds-media-link:hover .ds-open-hint, .ds-media-link:focus-visible .ds-open-hint { opacity: 1; transform: none; }"
+    },
+    {
+      "name": "Feed Post Head",
+      "kind": "custom",
+      "refersTo": "post-title",
+      "description": "Date line with the pinned marker, then the title row carrying share and the outline pill.",
+      "html": "<article class=\"ds-post\"><div class=\"ds-post-date\"><span class=\"ds-pinned\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7.5 3.75h5M8.5 3.75v4.5L6 11h8l-2.5-2.75v-4.5M10 11v5.25\"/></svg> Fijado</span><time>12 sept 2026</time></div><div class=\"ds-post-head\"><h2 class=\"ds-post-title\"><a href=\"#\">Un onboarding que no da miedo</a></h2><span class=\"ds-post-actions\"><button class=\"ds-icon-action\" aria-label=\"Compartir\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.1\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10 12.5V3.75M6.75 6.75 10 3.5l3.25 3.25M5.75 10H5a1.25 1.25 0 0 0-1.25 1.25v3.5A1.25 1.25 0 0 0 5 16h10a1.25 1.25 0 0 0 1.25-1.25v-3.5A1.25 1.25 0 0 0 15 10h-.75\"/></svg></button><a href=\"#\" class=\"ds-outline\">Leer case study <svg width=\"15\" height=\"15\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4.5 10h11M11.25 5.75 15.5 10l-4.25 4.25\"/></svg></a></span></div><p class=\"ds-exif\"><span>Lead product designer</span><span>2 diseño · 5 ingeniería</span><span>4 meses</span><span>iOS · Android</span></p></article>",
+      "css": ".ds-post { font-family: var(--sans, Figtree, 'Helvetica Neue', Arial, sans-serif); color: #272724; } .ds-post-date { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #5C5C57; } .ds-pinned { display: inline-flex; align-items: center; gap: 4px; color: #272724; } .ds-post-head { display: flex; align-items: center; gap: 16px; margin: 6px 0 12px; } .ds-post-title { flex: 1; min-width: 0; margin: 0; font-size: 25px; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; } .ds-post-title a { color: inherit; text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .35s cubic-bezier(0.16, 1, 0.3, 1); } .ds-post-title a:hover { background-size: 100% 1px; } .ds-post-actions { display: flex; align-items: center; gap: 4px; } .ds-icon-action { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #5C5C57; cursor: pointer; transition: background-color .15s, color .15s; } .ds-icon-action:hover { background: #F2F2F0; color: #272724; } .ds-outline { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px 0 14px; border: 1px solid #E8E8E5; border-radius: 999px; font-size: 13px; line-height: 1; color: #272724; text-decoration: none; white-space: nowrap; transition: border-color .15s; } .ds-outline:hover { border-color: #8C8C86; } .ds-outline svg { transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1); } .ds-outline:hover svg { transform: translateX(2px); } .ds-exif { display: flex; flex-wrap: wrap; margin: 10px 0 0; font-size: 13px; letter-spacing: .01em; color: #5C5C57; } .ds-exif span:not(:last-child)::after { content: '·'; margin: 0 7px; color: #8C8C86; } .ds-post a:focus-visible, .ds-icon-action:focus-visible { outline: 2px solid #272724; outline-offset: 3px; }"
+    },
+    {
+      "name": "Spec Sheet",
+      "kind": "custom",
+      "refersTo": "spec-sm",
+      "description": "Case-study catalogue: four columns under a full-ink 1px rule, small ink-2 labels over 14px values.",
+      "html": "<dl class=\"ds-spec\"><div><dt>Rol</dt><dd>Lead product designer</dd></div><div><dt>Equipo</dt><dd>2 diseño · 5 ingeniería</dd></div><div><dt>Duración</dt><dd>4 meses</dd></div><div><dt>Plataforma</dt><dd>iOS · Android</dd></div></dl>",
+      "css": ".ds-spec { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border-top: 1px solid #272724; font-family: var(--sans, Figtree, 'Helvetica Neue', Arial, sans-serif); color: #272724; } .ds-spec div { padding: 10px 12px 0 0; } .ds-spec dt { font-size: 12px; letter-spacing: .01em; color: #5C5C57; } .ds-spec dd { margin: 4px 0 0; font-size: 14px; line-height: 1.3; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Captioned Feed",
+    "overview": "The portfolio is a profile, and the work is its feed. Every case study is a dated post: a date line, a title row that carries its own two actions (share, read), raw media, a one-idea caption and a catalogue line of role, team, duration and platform. Opening a post leads to the full case study: byline, display title, lede, a spec sheet, chapters and a link to the next post. The system exists to make that format feel like a well-made product rather than a brochure.\n\nEverything is drawn in one warm graphite ink on pure white paper. Greys are not a separate palette; they are the same ink thinned toward the ground on the same warm hue (about 107° in OKLCH, near-zero chroma). One family, Figtree, carries the whole hierarchy at two weights: 500 for headings and names, 400 for everything else. Rank comes from size, ink tone and space. Media sits directly on the ground with a 6px corner and no frame; there are no cards and no shadows. The only colour that is not ink is a small green dot that means \"available for work\".\n\nThe page is wide and symmetric: the feed sits in the exact centre of a 1680px page, the profile is pinned to the bottom of the left column like a social profile, and the top bar has no surface at all, floating over the empty side columns. Density is calm and editorial: 88px between posts, tight stacks inside them, measured line lengths (62 to 64ch). Motion is small and physical on one expo-out curve; the signature moment is the media hover, where the image takes a faint veil, zooms slightly and shows a large thin arrow whose colour reads the image beneath it.\n\nThe ground (#FFFFFF), the darkest ink (#272724) and the line, fill and raised neutrals are user-chosen and binding. Figtree was chosen by the user over Instrument Sans, Inter Tight, Urbanist, Open Sans and Coolvetica.",
+    "keyCharacteristics": [
+      "Graphite on white: one ink (#272724) and its thinned tones on a pure white ground.",
+      "One family (Figtree), two weights: 500 for headings and names, 400 for the rest. Never bolder.",
+      "Raw media on the ground, 4:3, 6px corners; no cards, no shadows, no frames.",
+      "Pills for everything you press; 1px hairlines for everything that divides.",
+      "A single accent, the green availability dot.",
+      "Symmetric three-column page (1680px) with the 680px feed centred; two columns under 1200px, one under 900px.",
+      "Chrome without a surface: the top bar floats, the carousel has no controls."
+    ],
+    "rules": [
+      {
+        "name": "The Thinned Ink Rule",
+        "body": "Every neutral is the ink diluted toward the ground on the same warm hue. A new grey that drifts cool or picks up chroma does not belong; derive it from `ink` and `ground`.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Dot Rule",
+        "body": "Green appears once per screen, as the availability dot. It never becomes a button, link, highlight or chart colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The Decoration-Only Rule",
+        "body": "`ink-3` never carries text a reader needs. If it must be read, it is `ink-2`.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Weights Rule",
+        "body": "Weight 500 is for headings and the person's name; 400 is for everything else. Nothing is set heavier than 500, and emphasis inside text comes from `ink` against `ink-2`, not from weight.",
+        "section": "typography"
+      },
+      {
+        "name": "The Catalogue Voice Rule",
+        "body": "Facts about the work (role, team, duration, platform, figure captions) are set small (12 to 13px) in `ink-2` with +0.01em tracking, separated by `ink-3` middots in a line or by a full-ink rule in the spec sheet. That is the only change of voice the type makes.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sentence Case Rule",
+        "body": "Labels and headings are sentence case. No uppercase, no tracked-out small labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Shadow Rule",
+        "body": "Posts, media, lists, the top bar and controls sit directly on the ground with no shadow and no card. Separation is a hairline or a change of tone.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do build every grey from the ink and ground on the same warm hue (The Thinned Ink Rule); keep `ink-2` as the lightest colour for readable text.",
+      "Do set headings and names in Figtree 500 and everything else in 400; rank by size, `ink`/`ink-2` tone and space.",
+      "Do keep the feed centred in the 1680px page with equal side columns, and the home profile anchored to the bottom of the viewport.",
+      "Do make anything pressable a full pill (999px) or a circle, and anything that divides a 1px hairline.",
+      "Do place media raw on the ground at 4:3 with a 6px corner, and give linked media the veil, 1.02 zoom and background-aware arrow on hover.",
+      "Do keep the Contactar primary pill visible in the top bar at every width.",
+      "Do use the expo-out curve for all motion and respect reduced motion.",
+      "Do draw icons as round-capped line drawings on a 20px grid in `currentColor`."
+    ],
+    "donts": [
+      "Don't change the ground (#FFFFFF), the darkest ink (#272724) or the line, fill and raised neutrals; they are binding.",
+      "Don't wrap posts, media or lists in cards, borders or shadows, and don't give the top bar a fill or a divider.",
+      "Don't introduce a second accent. Green is only the availability dot.",
+      "Don't set type heavier than 500, in uppercase, or as letter-spaced small labels.",
+      "Don't add a second typeface or a condensed cut; Figtree carries everything.",
+      "Don't put readable text in `ink-3`.",
+      "Don't add dots, arrows or counters to the carousel.",
+      "Don't add engagement counts or reaction buttons to posts; a post's only actions are share and read."
+    ]
+  }
+}
