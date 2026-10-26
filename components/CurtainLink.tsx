@@ -11,11 +11,14 @@ import { useEffect, type ComponentProps } from "react";
 let settle: (() => void) | null = null;
 let revealTimer: ReturnType<typeof setTimeout> | undefined;
 
-export function CurtainLink({ href, ...rest }: ComponentProps<typeof Link> & { href: string }) {
+export function CurtainLink({ href, prefetch = true, ...rest }: ComponentProps<typeof Link> & { href: string }) {
   const router = useRouter();
   return (
     <Link
       href={href}
+      // Precarga completa: la página es dinámica (lee la cookie de idioma) y, sin sus
+      // datos ya en caché, el telón se queda congelado esperando al servidor.
+      prefetch={prefetch}
       {...rest}
       onNavigate={(e) => {
         if (!document.startViewTransition || settle || href === location.pathname) return;
@@ -23,10 +26,10 @@ export function CurtainLink({ href, ...rest }: ComponentProps<typeof Link> & { h
         const root = document.documentElement;
         const dir = href === "/" ? "down" : "up";
         root.dataset.curtain = dir;
-        // El parallax de la página nueva dura más que el telón: va en su propio atributo.
+        // El parallax de la página nueva va en su propio atributo: se quita después del telón.
         clearTimeout(revealTimer);
         root.dataset.reveal = dir;
-        revealTimer = setTimeout(() => delete root.dataset.reveal, 1750); // dura lo que la imagen más lenta (1.6s)
+        revealTimer = setTimeout(() => delete root.dataset.reveal, 1750); // ya acabado (0.9s) y con el telón fuera
         // La página que se va mueve su capa (la columna del feed o la imagen grande);
         // su recorte necesita saber dónde está para seguir el borde del telón al píxel.
         const layer = document.querySelector(dir === "up" ? ".layout:not(.cs) > .main" : ".cs-hero")?.getBoundingClientRect();
@@ -40,11 +43,18 @@ export function CurtainLink({ href, ...rest }: ComponentProps<typeof Link> & { h
                 settle = null;
                 resolve();
               };
-              const timer = setTimeout(done, 2500);
+              // Si la página tarda demasiado, no se anima la vieja (eso es el
+              // parpadeo): se suelta el telón sin animación y la nueva entra al llegar.
+              const timer = setTimeout(() => {
+                vt.skipTransition();
+                done();
+              }, 1200);
               settle = done;
               router.push(href);
             }),
         );
+        vt.ready.catch(() => {});
+        vt.updateCallbackDone.catch(() => {});
         vt.finished.finally(() => delete root.dataset.curtain);
       }}
     />

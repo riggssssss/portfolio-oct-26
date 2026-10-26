@@ -35,8 +35,6 @@ export default async function PostPage({ params }: Props) {
   const t = ui[lang];
   const post = localize(found, lang);
 
-  const i = posts.indexOf(found);
-  const next = localize(posts[(i + 1) % posts.length], lang);
 
   const aside = (
     <>
@@ -70,6 +68,12 @@ export default async function PostPage({ params }: Props) {
                   <dt>{t.role}</dt>
                   <dd>{post.meta.role}</dd>
                 </div>
+                {post.meta.status && (
+                  <div>
+                    <dt>{t.status}</dt>
+                    <dd>{post.meta.status}</dd>
+                  </div>
+                )}
                 {post.site && (
                   <div>
                     <dt>{t.website}</dt>
@@ -113,16 +117,6 @@ export default async function PostPage({ params }: Props) {
             </a>
           </div>
         </section>
-
-        {next.slug !== post.slug && (
-          <CurtainLink href={`/posts/${next.slug}`} className="next-post" aria-label={`${t.nextPost}: ${next.title}`}>
-            <span className="meta">{t.next}</span>
-            <span className="next-title">
-              <span className="next-label">{next.title}</span>
-              <ExArrow dir="right" />
-            </span>
-          </CurtainLink>
-        )}
       </Layout>
     </>
   );

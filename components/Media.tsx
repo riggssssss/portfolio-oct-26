@@ -1,6 +1,7 @@
 import type { Media as MediaT, Tone } from "@/lib/posts";
 import { AutoBgImg } from "./AutoBgImg";
 import { StageMedia } from "./StageMedia";
+import { ClipMedia } from "./ClipMedia";
 
 const tones: Record<Tone, { bg: string; fg: string; fill: string; soft: string }> = {
   light: { bg: "#EEEEEB", fg: "#272724", fill: "#F9F9F7", soft: "#D2D2CC" },
@@ -12,6 +13,7 @@ const tones: Record<Tone, { bg: string; fg: string; fill: string; soft: string }
 export function Media({ media, priority }: { media: MediaT; priority?: boolean }) {
   const cls = "media";
   if (media.stage) return <StageMedia stage={media.stage} alt={media.alt} />;
+  if (media.video) return <ClipMedia clip={media.video} alt={media.alt} />;
   if (media.src) {
     return (
       <div className={cls} data-bg={media.bg}>

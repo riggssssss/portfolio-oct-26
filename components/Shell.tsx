@@ -2,7 +2,6 @@ import { CurtainLink } from "@/components/CurtainLink";
 import type { ReactNode } from "react";
 import { site } from "@/lib/site";
 import type { UI } from "@/lib/i18n";
-import { CopyEmail } from "./Social";
 import { ExArrow } from "./Icons";
 import { ContactButton } from "./ContactButton";
 
@@ -43,13 +42,12 @@ export function TopBar({
           </nav>
         )}
         <div className="topbar-actions">
-          <CopyEmail email={site.email} className="text-link hide-sm" t={t} />
           {cv && (
             <a className="text-link hide-sm" href={cv.href} target="_blank" rel="noreferrer">
               CV <ExArrow />
             </a>
           )}
-          <ContactButton email={site.email} label={t.contact} copied={t.copied} />
+          <ContactButton email={site.email} label={t.contact} copied={t.emailCopied} />
         </div>
       </div>
     </header>

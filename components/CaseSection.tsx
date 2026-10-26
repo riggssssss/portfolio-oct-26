@@ -3,6 +3,7 @@ import type { Lang, UI } from "@/lib/i18n";
 import { Hairline } from "./Hairline";
 import { Media } from "./Media";
 import { Race } from "./Race";
+import { Readings } from "./Readings";
 import { Steps } from "./Steps";
 
 /** Lo que cada figura muestra, para quien no la ve. */
@@ -18,6 +19,9 @@ const FIGURE_LABEL_EN: Record<HairlineName, string> = {
   slow: "Crates riding a belt through a gate: mockups coming off the line, ready in seconds.",
   plot: "A bar chart whose bars all stand at zero: what a mockup costs.",
   terrain: "A field of pillars rising around the pointer: a gallery of more than 150 mockups.",
+  ask: "A blank card hovers over three trays, a task, a note and a list: it leans towards one, but it won't land until you choose.",
+  pile: "Forty cards in one pile: pull one out and every card above it shifts.",
+  day: "A round plate, the day, broken into three pieces, a list, a note and a routine: push them together and a crack always stays.",
 };
 const FIGURE_LABEL_ES: Record<HairlineName, string> = {
   copies: "Una bandeja de tarjetas idénticas, todas el mismo mockup: cojas la que cojas, es la que tiene todo el mundo.",
@@ -31,6 +35,9 @@ const FIGURE_LABEL_ES: Record<HairlineName, string> = {
   slow: "Cajas sobre una cinta que cruzan una puerta: mockups saliendo de la línea, listos en segundos.",
   plot: "Un gráfico de barras con todas a cero: lo que cuesta un mockup.",
   terrain: "Un campo de columnas que se alzan alrededor del puntero: una galería de más de 150 mockups.",
+  ask: "Una tarjeta en blanco flota sobre tres bandejas, una tarea, una nota y una lista: se inclina hacia una, pero no cae hasta que eliges.",
+  pile: "Cuarenta tarjetas en una pila: al sacar una, todas las de encima se mueven.",
+  day: "Un plato redondo, el día, partido en tres trozos, una lista, una nota y una rutina: al juntarlos siempre queda una grieta.",
 };
 
 /** Imagen del case study con su pie: el pie es el alt, en el tono de la ficha.
@@ -74,6 +81,7 @@ export function CaseSection({ s, lang, t }: { s: Section; lang: Lang; t: UI }) {
               ))}
             </ul>
           )}
+          {s.readings && <Readings readings={s.readings} t={t} />}
           {s.stats && !figuredStats && (
             <dl className="cs-list cs-stats">
               {s.stats.map((st) => (
@@ -114,6 +122,7 @@ export function CaseSection({ s, lang, t }: { s: Section; lang: Lang; t: UI }) {
       ) : (
         s.media && <Figure m={s.media} label={s.media.figure && FIGURE_LABEL[s.media.figure]} />
       )}
+      {s.after && <Figure m={s.after} />}
       {s.gallery?.every((m) => m.figure) && (
         <ul className="cs-points">
           {s.gallery.map((m) => (

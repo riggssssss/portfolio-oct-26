@@ -41,6 +41,7 @@
   --gutter: 40px; /* margen de página, el mismo a los lados y abajo (petición del usuario) */
   --gap-block: 48px; /* bloques dentro de una sección; columnas */
   --gap-item: 96px; /* elemento → elemento en una lista (posts) */
+  --gap-chapter: clamp(128px, 13vw, 192px); /* capítulo → capítulo en el case study */
   --gap-section: clamp(72px, 9vw, 128px); /* contenido → pie de página */
   --radius: 6px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -307,8 +308,46 @@ svg {
   background: var(--ink);
   color: var(--bg);
 }
-.btn.primary:hover {
-  background: var(--ink-hover);
+/* Solo con ratón: en táctil el hover se queda pegado tras el toque. */
+@media (hover: hover) {
+  .btn.primary:hover {
+    background: var(--ink-hover);
+  }
+}
+/* Contacto: al copiar, la pastilla se ensancha hasta "Email copiado" y la palabra
+   nueva sube desde abajo saliendo de un desenfoque; la vieja sale por arriba. */
+.contact-labels {
+  display: inline-grid;
+  justify-items: start;
+  width: var(--w-idle, auto);
+  overflow: hidden;
+  transition: width 0.45s var(--ease-out);
+}
+.contact-btn[data-done] .contact-labels {
+  width: var(--w-done, auto);
+}
+.contact-label {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  transition:
+    transform 0.45s var(--ease-out),
+    opacity 0.3s var(--ease-out),
+    filter 0.45s var(--ease-out);
+}
+.contact-label:last-child {
+  transform: translateY(70%);
+  opacity: 0;
+  filter: blur(2px);
+}
+.contact-btn[data-done] .contact-label:first-child {
+  transform: translateY(-70%);
+  opacity: 0;
+  filter: blur(2px);
+}
+.contact-btn[data-done] .contact-label:last-child {
+  transform: none;
+  opacity: 1;
+  filter: none;
 }
 
 
@@ -594,6 +633,9 @@ svg {
   flex: 1;
   min-width: 0;
   margin: 0;
+  /* Sin equilibrar: la primera línea llega hasta el enlace al caso, en vez de
+     partirse en dos líneas cortas con un hueco (petición del usuario). */
+  text-wrap: pretty;
 }
 .post-title {
   margin: 6px 0 16px;
@@ -699,7 +741,8 @@ svg {
   background: var(--fill);
 }
 .media img,
-.media svg {
+.media svg,
+.media video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -871,6 +914,25 @@ svg {
 .cs-head > .cs-chapter {
   margin-top: var(--gap-group);
 }
+/* Titular y descripción, en los dos tercios izquierdos de la columna (petición del
+   usuario: la mitad, luego "más width"); la ficha sigue a todo el ancho. Sin max-width. */
+.cs-head {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+.cs-head > .cs-chapter {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+.cs-head .cs-spec {
+  grid-column: 1 / -1;
+}
+@media (max-width: 900px) {
+  .cs-head,
+  .cs-head > .cs-chapter {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 /* En la cabecera, la descripción va antes que la ficha, como en el feed. */
 .cs-head .cs-lede {
   order: -1;
@@ -949,27 +1011,29 @@ svg {
   aspect-ratio: 3 / 2;
 }
 /* Parallax de entrada: con el telón, la columna del case study sube y sus
-   imágenes la siguen con retraso y más recorrido, así se leen dos planos. La
-   página nueva es una vista viva, así que el movimiento se ve dentro del barrido. */
+   imágenes la siguen con más recorrido, así se leen dos planos. La página nueva
+   es una vista viva, así que el movimiento se ve dentro del barrido. Todo acaba
+   antes que el telón (0.95s): en Safari, una animación que sigue viva cuando el
+   telón termina vuelve un fotograma a su inicio, y eso era el parpadeo. */
 html[data-reveal="up"] .cs > .main {
-  animation: reveal-rise 1.15s var(--ease-out) both;
+  animation: reveal-rise 0.85s var(--ease-out) both;
 }
 /* Al abrir, a la vez que la columna, cada imagen del case study sube entera, con
    su marco, desde más abajo (hero, figuras, escena). Se mueve la caja,
    no la foto dentro de ella (petición del usuario). */
 html[data-reveal="up"] .cs .media {
-  animation: reveal-lift 1.6s var(--ease-out) both;
+  animation: reveal-lift 0.9s var(--ease-out) both;
 }
 /* En el feed solo se mueve la columna central (la única que hace scroll);
    perfil y barra se quedan quietos. Toda la pila va en un sentido: al abrir
    sube, al cerrar baja. Así que al volver la columna baja a su sitio y las
    imágenes de los posts se asientan dentro de su marco. */
 html[data-reveal="down"] .layout:not(.cs) > .main {
-  animation: reveal-fall 1.15s var(--ease-out) both;
+  animation: reveal-fall 0.85s var(--ease-out) both;
 }
 html[data-reveal="down"] .feed .media > img,
 html[data-reveal="down"] .feed .media > svg {
-  animation: reveal-drift-down 1.45s var(--ease-out) both;
+  animation: reveal-drift-down 0.9s var(--ease-out) both;
 }
 @keyframes reveal-rise {
   from {
@@ -993,9 +1057,9 @@ html[data-reveal="down"] .feed .media > svg {
   }
 }
 
-/* Capítulos separados como los posts del feed: solo aire, el mismo intervalo. */
+/* Capítulos separados solo por aire, más que los posts del feed (petición del usuario). */
 .cs-section {
-  margin-top: var(--gap-item);
+  margin-top: var(--gap-chapter);
 }
 .cs-h2 {
   font-size: var(--fs-heading);
@@ -1025,6 +1089,99 @@ html[data-reveal="down"] .feed .media > svg {
 .cs-list-text {
   margin-top: var(--gap-pair);
   color: var(--ink-2);
+}
+/* Lecturas: dos columnas iguales entre hairlines, como la ficha. A la izquierda la línea tal
+   cual, en una barra como el campo de la app; a la derecha lo que entiende, de lo literal
+   (ink-2) a lo que deduce (la última, en tinta). */
+.cs-readings {
+  margin-top: var(--gap-block);
+}
+.cs-readings-head,
+.cs-reading {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--gap-block);
+}
+.cs-readings-head {
+  padding-bottom: var(--gap-text);
+  color: var(--faint);
+}
+.cs-reading {
+  align-items: start;
+  padding-block: var(--gap-group);
+  border-top: 1px solid var(--line);
+}
+.cs-said {
+  justify-self: start;
+  padding: 10px 20px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  color: var(--ink);
+}
+/* Lo que entiende, como un razonamiento: un nodo por dato, unidos por una línea; el último,
+   la conclusión, en tinta y con el nodo lleno. */
+.cs-got {
+  --node: 7px;
+  --lead: 0.75em; /* el centro de la primera línea de cada dato (line-height 1.5) */
+  padding-top: 11px; /* la primera línea, a la altura del texto de la barra */
+  padding-left: 24px;
+  color: var(--ink-2);
+}
+.cs-got li {
+  position: relative;
+}
+.cs-got li + li {
+  margin-top: var(--gap-caption);
+}
+.cs-got li::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--lead) - var(--node) / 2);
+  left: -24px;
+  width: var(--node);
+  height: var(--node);
+  border: 1px solid var(--faint);
+  border-radius: 50%;
+  background: var(--bg);
+}
+.cs-got li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--lead) + var(--node) / 2 + 3px);
+  bottom: calc(-1 * var(--gap-caption) - var(--lead) + var(--node) / 2 + 3px);
+  left: calc(-24px + var(--node) / 2 - 0.5px);
+  width: 1px;
+  background: var(--line);
+  transform-origin: top;
+}
+.cs-got li:last-child {
+  color: var(--ink);
+}
+.cs-got li:last-child::before {
+  border-color: var(--ink);
+  background: var(--ink);
+}
+/* Con JS, cada fila piensa al entrar en pantalla: los datos llegan uno tras otro, y la línea
+   hasta el siguiente se dibuja mientras llega. */
+.cs-readings[data-armed] .cs-got li {
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 360ms var(--ease-out),
+    transform 360ms var(--ease-out);
+  transition-delay: calc(var(--i) * 420ms + 200ms);
+}
+.cs-readings[data-armed] .cs-got li::after {
+  transform: scaleY(0);
+  transition: transform 420ms var(--ease-out);
+  transition-delay: calc(var(--i) * 420ms + 360ms);
+}
+.cs-readings[data-armed] .cs-reading.on .cs-got li {
+  opacity: 1;
+  transform: none;
+}
+.cs-readings[data-armed] .cs-reading.on .cs-got li::after {
+  transform: none;
 }
 /* Cifra a la izquierda, qué mide a la derecha, en la misma línea base. */
 .cs-stats > div {
@@ -1059,6 +1216,14 @@ html[data-reveal="down"] .feed .media > svg {
   border-radius: var(--radius);
   background: var(--fill);
   --hairline-plate: var(--fill);
+}
+/* Las de Note it: trazos negros, de la tinta de la casa hacia abajo, y piezas blancas. */
+.cs-points .hairline:is([data-hairline="pile"], [data-hairline="ask"], [data-hairline="day"]) {
+  --hairline-plate: #ffffff;
+  --hairline-hi: var(--ink);
+  --hairline-edge: #55554f;
+  --hairline-mid: #8c8c86;
+  --hairline-lo: #bdbdb7;
 }
 /* Cifra bajo su figura: tamaño de titular de sección, peso normal; su etiqueta debajo. */
 .cs-stat-value {
@@ -1158,32 +1323,6 @@ html[data-reveal="down"] .feed .media > svg {
   gap: var(--gap-caption) var(--gap-group);
   margin-top: var(--gap-block);
   color: var(--faint);
-}
-
-.next-post {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-pair);
-  margin-top: var(--gap-item);
-}
-.next-title {
-  font-size: var(--fs-title);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  font-weight: var(--w-head);
-}
-.next-title .ex-arrow {
-  transition: transform 0.3s var(--ease-out);
-}
-.next-label {
-  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
-  transition: background-size 0.35s var(--ease-out);
-}
-.next-post:hover .next-label {
-  background-size: 100% 1px;
-}
-.next-post:hover .ex-arrow {
-  transform: translateX(4px);
 }
 
 /* ───────── Responsive ───────── */
@@ -1309,6 +1448,14 @@ html[data-reveal="down"] .feed .media > svg {
   }
   .cs-points {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .cs-reading,
+  .cs-readings-head {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--gap-text);
+  }
+  .cs-readings-head span + span {
+    display: none;
   }
 }
 

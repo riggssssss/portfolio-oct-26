@@ -9,12 +9,67 @@ export const es: Record<string, string> = {
   Web: "Web",
   "Web · Figma": "Web · Figma",
 
+  // Note it
+  "You write it, Note it sorts it": "Tú lo escribes, Note it lo ordena",
+  "For heads that are always full. I designed and built Note it, an iOS and Android app with a single field: you write, say or photograph anything, and it sorts it and shows you only what matters today.":
+    "Para cabezas que siempre van llenas. Diseñé y desarrollé Note it, una app para iOS y Android con un solo campo: escribes, dices o fotografías lo que sea, y ella lo ordena y te enseña solo lo que toca hoy.",
+  "iOS & Android": "iOS y Android",
+  "Note it's Home: the week, today's three things with their categories, and Tasks and Notes waiting below":
+    "El Inicio de Note it: la semana, las tres cosas de hoy con su categoría y, debajo, Tareas y Notas esperando",
+  "So much to do, and no idea where to start": "Tanto que hacer que no sabes por dónde empezar",
+  "Tasks, notes, errands, plans... there's always so much to do that we don't know where to start. Writing it all down is easy. The hard part comes after.":
+    "Tareas, notas, recados, planes... siempre hay tanto que hacer que no sabemos ni por dónde empezar. Apuntarlo todo es fácil, lo difícil viene después.",
+  "Nothing says what comes first": "Nada te dice qué va primero",
+  "Forty things in one pile, the urgent next to the someday. Nothing tells you which one matters now.":
+    "Cuarenta cosas en una pila, lo urgente junto a lo de algún día. Nada te dice cuál importa ahora.",
+  "You have to sort it all yourself": "Tienes que ordenarlo todo tú",
+  "Everything that crosses your mind needs a place, and finding it is one more thing to do.":
+    "Cada cosa que se te pasa por la cabeza necesita un sitio, y buscárselo ya es otra cosa más que hacer.",
+  "Your day is in pieces": "Tu día está en trozos",
+  "One app for each thing, and none that brings it all together without making it complicated.":
+    "Una app para cada cosa, y ninguna que lo junte todo sin complicártelo.",
+  "One field": "Un solo campo",
+  "A single field, and it takes anything": "Un solo campo, y le vale todo",
+  "You don't have to decide where to save it, or remember where you left it. Type it however it comes out, dictate it, or take a photo of a list on paper, and Note it puts it where it belongs.":
+    "No tienes que pensar dónde guardarlo ni acordarte de dónde lo dejaste. Lo escribes como te salga, lo dictas o le haces una foto a una lista en papel, y Note it lo coloca donde tiene que estar.",
+  "You type it, send it, and it lands where it belongs on its own: today, tomorrow or the day you said":
+    "Lo escribes, lo envías y se coloca solo donde toca: para hoy, para mañana o para el día que le dijiste",
+  "Left, new things come in from the field as the day goes on; right, Today with three: finish one and the next comes in":
+    "A la izquierda, lo nuevo entra desde el campo a lo largo del día; a la derecha, Hoy con tres: terminas una y entra la siguiente",
+  // Las grabaciones de la app, en español
+  "/img/noteit/write-en.mp4": "/img/noteit/write-es.mp4",
+  "/img/noteit/write-en.jpg": "/img/noteit/write-es.jpg",
+  "/img/noteit/today-en.mp4": "/img/noteit/today-es.mp4",
+  "/img/noteit/today-en.jpg": "/img/noteit/today-es.jpg",
+  "How it thinks": "Cómo piensa",
+  "It thinks the way your head does": "Piensa como tu cabeza",
+  "When you know there's an exam on Friday, you don't just keep the date: you know you should study today. Note it does the same. Its AI reads what you write, works out what it's about and draws out what it means: dates, routines, people, the things you keep coming back to.": "Cuando sabes que el viernes tienes examen, no te quedas solo con la fecha: sabes que hoy te toca estudiar. Note it hace lo mismo. Su IA lee lo que escribes, entiende de qué va y saca lo que implica: fechas, rutinas, personas, aquello sobre lo que vuelves una y otra vez.",
+  "Logic exam on Friday": "Examen de lógica el viernes",
+  "Study · Logic": "Estudio · Lógica",
+  "An exam, on Friday": "Un examen, el viernes",
+  "Today: study logic": "Hoy: estudiar lógica",
+  "I can't study on Thursdays": "Los jueves no puedo estudiar",
+  "Not a task: a limit": "No es una tarea: es un límite",
+  "Study stops landing on Thursdays": "El estudio deja de caer en jueves",
+  "Need to book the restaurant for my partner's birthday, don't forget": "Tengo que reservar en el restaurante para el cumple de mi pareja, que no se me olvide",
+  "Your partner is Rebeca": "Tu pareja es Rebeca",
+  "Rebeca's birthday is 27 December: you wrote it weeks ago": "Rebeca cumple el 27 de diciembre: lo escribiste hace semanas",
+  "A table is booked ahead: it sets it for 20 December, a week early": "Una mesa se reserva antes: te lo pone para el 20, con una semana de margen",
+  "Less at once": "Mucho en poco",
+  "What looks like a lot, in three things a day":
+    "Lo que parece mucho, en tres cosas al día",
+  "Prepare the client meeting, study for the civil service exams, and everything else. Thinking about it all at once is overwhelming, and in my case there was so much that I'd end up doing nothing.":
+    "Preparar la reunión con el cliente, estudiar para las oposiciones y todo lo demás. Pensarlo todo a la vez agobia, y en mi caso había tanto que acababa por no hacer nada.",
+  "So the app doesn't show you everything at once: out of all you have, it brings forward what matters most today, by date and urgency. The rest waits its turn. Finish one and the next comes in. A little every day, but every day.":
+    "Por eso la app no te lo enseña todo de golpe: de todo lo que tienes, te pone delante lo que más importa hoy, por fecha y urgencia. Lo demás espera su turno. Terminas una y entra la siguiente. Poco cada día, pero cada día.",
+
   // Mockp
-  "A professional mockup in a matter of seconds": "Un mockup profesional en cuestión de segundos",
+  "You bring the design, Mockp makes it real": "Tú pones el diseño, Mockp lo hace real",
   "A mockup is only useful if it looks like yours. I designed and built Mockp, a free gallery with an editor that places your design in seconds, with all the realism it deserves.":
     "Un mockup solo sirve si parece tuyo. Diseñé y desarrollé Mockp, una galería gratuita con un editor que coloca tu diseño en segundos, con todo el realismo que merece.",
   "Product Design & Development": "Diseño de producto y desarrollo",
   "Personal project": "Proyecto personal",
+  "In development": "En desarrollo",
   "[X] months": "[X] meses",
   "Mockp editor: a laptop on a wooden chair, next to the brightness, reflection and screen settings":
     "Editor de Mockp: un portátil sobre una silla de madera, junto a los ajustes de brillo, reflejo y pantalla",
