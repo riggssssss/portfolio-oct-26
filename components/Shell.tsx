@@ -2,7 +2,7 @@ import { CurtainLink } from "@/components/CurtainLink";
 import type { ReactNode } from "react";
 import { site } from "@/lib/site";
 import type { UI } from "@/lib/i18n";
-import { ExArrow } from "./Icons";
+import { ExArrow, GitHub, LinkedIn } from "./Icons";
 import { ContactButton } from "./ContactButton";
 
 /** `plain`: sin migas; en el feed el perfil ya dice quién es (decisión del usuario).
@@ -47,6 +47,20 @@ export function TopBar({
               CV <ExArrow />
             </a>
           )}
+          <ul className="topbar-social" aria-label={t.links}>
+            {site.links.map((l) => {
+              const Icon = l.label === "LinkedIn" ? LinkedIn : l.label === "GitHub" ? GitHub : null;
+              return (
+                Icon && (
+                  <li key={l.label}>
+                    <a className="social-icon" href={l.href} target="_blank" rel="noreferrer" aria-label={l.label}>
+                      <Icon />
+                    </a>
+                  </li>
+                )
+              );
+            })}
+          </ul>
           <ContactButton email={site.email} label={t.contact} copied={t.emailCopied} />
         </div>
       </div>

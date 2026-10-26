@@ -23,11 +23,11 @@ export const es: Record<string, string> = {
   "Forty things in one pile, the urgent next to the someday. Nothing tells you which one matters now.":
     "Cuarenta cosas en una pila, lo urgente junto a lo de algún día. Nada te dice cuál importa ahora.",
   "You have to sort it all yourself": "Tienes que ordenarlo todo tú",
-  "Everything that crosses your mind needs a place, and finding it is one more thing to do.":
-    "Cada cosa que se te pasa por la cabeza necesita un sitio, y buscárselo ya es otra cosa más que hacer.",
+  "Your planner gets the important things. The dental floss slips your mind until you're in the bathroom.":
+    "En la agenda va lo importante. El hilo dental se te olvida hasta que entras al baño.",
   "Your day is in pieces": "Tu día está en trozos",
-  "One app for each thing, and none that brings it all together without making it complicated.":
-    "Una app para cada cosa, y ninguna que lo junte todo sin complicártelo.",
+  "One app for each thing, and none brings it together simply. Your day ends up in pieces.":
+    "Una app para cada cosa y ninguna que lo junte todo sin líos. Tu día acaba en trozos.",
   "One field": "Un solo campo",
   "A single field, and it takes anything": "Un solo campo, y le vale todo",
   "You don't have to decide where to save it, or remember where you left it. Type it however it comes out, dictate it, or take a photo of a list on paper, and Note it puts it where it belongs.":

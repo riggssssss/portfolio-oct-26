@@ -113,8 +113,8 @@ export const posts: Post[] = [
         ],
         points: [
           { title: "Nothing says what comes first", text: "Forty things in one pile, the urgent next to the someday. Nothing tells you which one matters now.", figure: "pile" },
-          { title: "You have to sort it all yourself", text: "Everything that crosses your mind needs a place, and finding it is one more thing to do.", figure: "ask" },
-          { title: "Your day is in pieces", text: "One app for each thing, and none that brings it all together without making it complicated.", figure: "day" },
+          { title: "You have to sort it all yourself", text: "Your planner gets the important things. The dental floss slips your mind until you're in the bathroom.", figure: "ask" },
+          { title: "Your day is in pieces", text: "One app for each thing, and none brings it together simply. Your day ends up in pieces.", figure: "day" },
         ],
       },
       {

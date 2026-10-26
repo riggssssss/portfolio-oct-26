@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Check, Mail } from "./Icons";
 
 /** El botón de Contacto de la barra: copia el correo y cambia a "Email copiado"
  *  con una transición suave: la pastilla se ensancha y la palabra nueva sube
  *  desde abajo saliendo de un desenfoque, como la pastilla de "Copy". Sin permiso
- *  de portapapeles, abre el correo. */
+ *  de portapapeles, abre el correo. En móvil es solo el sobre, que pasa a un check. */
 export function ContactButton({ email, label, copied }: { email: string; label: string; copied: string }) {
   const [done, setDone] = useState(false);
   const box = useRef<HTMLSpanElement>(null);
@@ -25,6 +26,7 @@ export function ContactButton({ email, label, copied }: { email: string; label: 
     <a
       className="btn primary contact-btn"
       href={`mailto:${email}`}
+      aria-label={label}
       data-done={done || undefined}
       onClick={async (e) => {
         e.preventDefault();
@@ -44,6 +46,10 @@ export function ContactButton({ email, label, copied }: { email: string; label: 
         <span className="contact-label" aria-hidden={!done}>
           {copied}
         </span>
+      </span>
+      <span className="contact-icon" aria-hidden="true">
+        <Mail />
+        <Check />
       </span>
       <span className="sr-only" aria-live="polite">
         {done ? copied : ""}
