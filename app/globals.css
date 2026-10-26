@@ -1403,8 +1403,10 @@ html[data-reveal="down"] .feed .media > svg {
   }
   /* Perfil apilado: la foto, el nombre debajo y luego la bio; con aire bajo la
      barra (petición del usuario). */
+  /* El perfil como un bloque: el mismo aire encima de la foto (24 + 48) que bajo
+     las pills (64 + 8), 72px a cada lado (petición del usuario). */
   .aside:has(.profile) {
-    padding-top: var(--gap-group);
+    padding: var(--gap-block) 0 var(--gap-caption);
   }
   .profile .avatar.lg {
     width: 64px;
@@ -1457,6 +1459,10 @@ html[data-reveal="down"] .feed .media > svg {
   }
   .topbar-social {
     display: flex;
+  }
+  /* EN / ES al centro de los iconos, no pegado arriba. */
+  .topbar .lang {
+    align-self: center;
   }
   .contact-btn {
     justify-content: center;
