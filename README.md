@@ -19,18 +19,9 @@ The site is deliberately quiet: a single feed, generous white space and one case
 - [Figtree](https://fonts.google.com/specimen/Figtree) for all the type
 - Plain CSS: one global stylesheet, plus CSS Modules where a component needs its own styles
 
-## Running it locally
+## Whatch it live
 
-You'll need Node 20 or newer.
-
-```bash
-git clone https://github.com/riggssssss/portfolio-oct-26.git
-cd portfolio-oct-26
-npm install
-npm run dev
-```
-
-Then open [http://localhost:3000](http://localhost:3000).
+Open [http://adriangarcia.space](http://adriangarcia.space).
 
 | Command | What it does |
 | --- | --- |
