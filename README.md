@@ -23,11 +23,6 @@ The site is deliberately quiet: a single feed, generous white space and one case
 
 Open [http://adriangarcia.space](http://adriangarcia.space).
 
-| Command | What it does |
-| --- | --- |
-| `npm run dev` | Starts the dev server with hot reload |
-| `npm run build` | Makes a production build |
-| `npm run start` | Serves the production build |
 
 ## Where things live
 
